@@ -43,7 +43,7 @@ const HeroBanner = () => {
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
-            className="absolute right-[31px] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[40px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute active:scale-90 transition-all duration-300 right-[31px] md:right-[51px] bottom-0 w-[30px] md:w-[50px] h-[40px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <IoIosArrowBack className="text-sm md:text-lg" />
           </div>
@@ -51,7 +51,7 @@ const HeroBanner = () => {
         renderArrowNext={(clickHandler, hasNext) => (
           <div
             onClick={clickHandler}
-            className="absolute right-0 bottom-0 w-[30px] md:w-[50px] h-[40px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
+            className="absolute active:scale-90 transition-all duration-300 right-0 bottom-0 w-[30px] md:w-[50px] h-[40px] bg-black z-10 flex items-center justify-center cursor-pointer hover:opacity-90"
           >
             <IoIosArrowBack className="rotate-180 text-sm md:text-lg" />
           </div>

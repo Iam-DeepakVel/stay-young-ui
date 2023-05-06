@@ -1,22 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
-
-const navLinks = [
-  { id: 1, name: "Home", url: "/" },
-  { id: 2, name: "About", url: "/about" },
-  {
-    id: 3,
-    name: "Categories",
-    subMenu: [
-      { id: 1, name: "Sun Screen" },
-      { id: 2, name: "Toner / mist" },
-      { id: 3, name: "Serum / essence" },
-      { id: 4, name: "lotion / cream" },
-    ],
-  },
-  { id: 4, name: "Contact", url: "/contact" },
-];
+import { navLinks } from "./Menu";
 
 const MenuMobile = ({
   showCategoryMenu,
@@ -28,12 +13,12 @@ const MenuMobile = ({
   setMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <ul className="flex flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] border-t text-black">
+    <ul className="flex bg-white flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] border-t text-black">
       {navLinks.map((link) => (
         <React.Fragment key={link.id}>
           {link.subMenu ? (
             <li
-              className="cursor-pointer py-4 px-5 border-b flex flex-col relative "
+              className="cursor-pointer  py-4 px-5 border-b flex flex-col relative "
               onClick={() => setShowCategoryMenu(!showCategoryMenu)}
             >
               <div className="flex justify-between items-center">
@@ -42,11 +27,11 @@ const MenuMobile = ({
               </div>
 
               {showCategoryMenu && (
-                <ul className="bg-black/[0.05] -mx-5 mt-4 -mb-4">
+                <ul className="bg-black/[0.01] -mx-5 mt-4 -mb-4">
                   {link.subMenu.map((subMenuItem) => (
                     <Link
                       key={subMenuItem.id}
-                      href="/"
+                      href={subMenuItem.url}
                       onClick={() => {
                         setShowCategoryMenu(false);
                         setMobileMenu(false);

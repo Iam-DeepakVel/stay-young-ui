@@ -8,7 +8,13 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins"],
+        gochiHand: ["Gochi Hand"],
+        urbanist: ["Urbanist"],
+      },
+    },
   },
   plugins: [],
 };
