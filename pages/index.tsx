@@ -1,3 +1,10 @@
-export default function Home() {
-  return <h2>Stay Young</h2>;
+import Home from "@/containers/Home";
+import BaseLayout from "@/layouts/BaseLayout";
+
+export default function HomePage() {
+  return (
+    <BaseLayout title="Home">
+      <Home />
+    </BaseLayout>
+  );
 }
