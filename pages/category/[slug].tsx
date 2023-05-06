@@ -1,4 +1,4 @@
-import SingleCategory from "@/components/single-category/SingleCategory";
+import SingleCategory from "@/containers/category/SingleCategory";
 import BaseLayout from "@/layouts/BaseLayout";
 import { useRouter } from "next/router";
 import React from "react";

@@ -1,5 +1,5 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
+import Footer from "@/common/footer/Footer";
+import Header from "@/common/header/Header";
 import Head from "next/head";
 import React, { ReactNode } from "react";
 
@@ -21,7 +21,7 @@ const BaseLayout = ({ children, title }: BaseLayoutProps) => {
       <div>
         <Header />
         <main className="font-urbanist">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

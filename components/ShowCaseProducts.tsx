@@ -1,11 +1,11 @@
-import Wrapper from "@/common/Wrapper";
-import ProductCard from "@/common/ProductCard";
+import Wrapper from "@/layouts/Wrapper";
+import ProductCard from "@/components/ProductCard";
 import React from "react";
 
 const ShowCaseProducts = () => {
   return (
     <Wrapper>
-      <div className="text-center max-w-[800px]  mx-auto my-[50px] md:my-[80px]">
+      <div className="text-center  max-w-[800px] mx-auto my-[50px] md:my-[80px]">
         <h2 className=" text-[20px] md:text-[34px] mb-5 font-semibold">
           Korean Beauty Products for Every Skin Type
         </h2>

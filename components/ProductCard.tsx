@@ -11,8 +11,8 @@ const ProductCard = () => {
       <Image
         src="/assets/images/p5.jpg"
         alt="product-image"
-        width={300}
-        height={300}
+        width={500}
+        height={500}
       />
       <div className=" p-4 text-black/[0.9]">
         <h2 className=" text-lg font-medium">Product Name</h2>

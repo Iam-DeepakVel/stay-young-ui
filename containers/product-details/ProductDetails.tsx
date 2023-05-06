@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import Wrapper from "@/common/Wrapper";
+import Wrapper from "@/layouts/Wrapper";
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { IoMdHeartEmpty } from "react-icons/io";
+import RelatedProducts from "@/components/RelatedProducts";
 
 function ProductDetailsCarousel() {
   return (
@@ -80,6 +81,8 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        {/* Related Products */}
+        <RelatedProducts />
       </Wrapper>
     </div>
   );

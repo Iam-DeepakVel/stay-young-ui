@@ -1,5 +1,5 @@
-import ProductCard from "@/common/ProductCard";
-import Wrapper from "@/common/Wrapper";
+import ProductCard from "@/components/ProductCard";
+import Wrapper from "@/layouts/Wrapper";
 import React from "react";
 
 const SingleCategory = ({ slug }: { slug?: string | string[] }) => {
@@ -11,7 +11,7 @@ const SingleCategory = ({ slug }: { slug?: string | string[] }) => {
             {slug ? slug.toString().toUpperCase() : ""}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-14 px-5 md:px-0 place-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0 place-items-center">
           <ProductCard />
           <ProductCard />
           <ProductCard />

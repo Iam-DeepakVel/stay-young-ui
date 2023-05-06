@@ -1,5 +1,6 @@
-import HeroBanner from "@/components/hero-banner/HeroBanner";
-import ShowCaseProducts from "@/components/showcase-products/ShowCaseProducts";
+import HeroBanner from "@/components/HeroBanner";
+import ShowCaseProducts from "@/components/ShowCaseProducts";
+import Wrapper from "@/layouts/Wrapper";
 import React from "react";
 
 const Home = () => {

@@ -10,9 +10,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Poppins"],
-        gochiHand: ["Gochi Hand"],
-        urbanist: ["Urbanist"],
+        poppins: "Poppins, sans-serif",
+        urbanist: "Urbanist, sans-serif",
+        bruno: "Bruno Ace SC, sans-serif",
       },
     },
   },

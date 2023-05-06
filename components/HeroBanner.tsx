@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import { IoIosArrowBack } from "react-icons/io";
+import Link from "next/link";
 
 const carousels = [
   {
@@ -33,13 +34,15 @@ const carousels = [
 
 const HeroBanner = () => {
   return (
-    <div className="relative text-white text-[20px] w-full max-w-7xl  mx-auto">
+    <div className="relative text-white text-[20px] w-full max-w-[1360px]  mx-auto">
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
         showThumbs={false}
         showStatus={false}
         swipeable={true}
+        interval={2500}
+        transitionTime={1000}
         renderArrowPrev={(clickHandler, hasPrev) => (
           <div
             onClick={clickHandler}
@@ -77,8 +80,8 @@ const HeroBanner = () => {
                 </p>
                 <p className="text-gray-700 text-sm">{carousel.hashtags} </p>
               </div>
-              <a
-                href="#_"
+              <Link
+                href="/"
                 className="relative w-32 pl-3 py-2 md:w-44 md:px-6 md:py-3 inline-flex items-center  overflow-hidden text-lg font-medium text-black border-2 border-black  hover:text-white group hover:bg-gray-50"
               >
                 <span className="absolute left-0 block w-full h-0 transition-all bg-black opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
@@ -99,7 +102,7 @@ const HeroBanner = () => {
                   </svg>
                 </span>
                 <span className="relative text-sm md:text-lg">See More</span>
-              </a>
+              </Link>
             </div>
           </div>
         ))}

@@ -35,8 +35,7 @@ const Menu = ({
           {link.subMenu ? (
             <li
               className={`cursor-pointer ${
-                asPath.includes(link.url) &&
-                "font-extrabold"
+                asPath.includes(link.url) && "font-extrabold"
               } flex items-center gap-2 relative`}
               onMouseEnter={() => setShowCategoryMenu(true)}
               onMouseLeave={() => setShowCategoryMenu(false)}
@@ -55,7 +54,7 @@ const Menu = ({
                         className={`${
                           asPath === subMenuItem.url &&
                           "bg-[#28282B] text-white"
-                        } h-12 flex items-center px-4 py-2 hover:bg-[#28282B] hover:text-white`}
+                        } h-12 flex items-center px-4 py-2 hover:bg-[#28282B] hover:text-white hover:scale-110 rounded-md`}
                       >
                         {subMenuItem.name}
                       </li>
@@ -68,10 +67,7 @@ const Menu = ({
             <li className="cursor-pointer">
               <Link
                 href={link.url!}
-                className={`${
-                  asPath === link.url &&
-                  "font-extrabold"
-                }`}
+                className={`${asPath === link.url && "font-extrabold"}`}
               >
                 {link.name}
               </Link>
