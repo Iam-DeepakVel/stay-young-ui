@@ -1,5 +1,6 @@
 import Cart from "@/containers/cart/Cart";
 import BaseLayout from "@/layouts/BaseLayout";
+import dynamic from "next/dynamic";
 import React from "react";
 
 const CartPage = () => {
@@ -10,4 +11,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false });

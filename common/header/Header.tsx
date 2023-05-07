@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Wrapper from "../../layouts/Wrapper";
 import Menu from "./Menu";
 import Link from "next/link";
@@ -7,12 +7,21 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { VscChromeClose } from "react-icons/vsc";
 import { BiMenuAltRight } from "react-icons/bi";
 import MenuMobile from "@/common/header/MenuMobile";
+import { StoreContext } from "@/store/store";
 
 const Header = () => {
   const [show, setShow] = useState("translate-y-0");
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { state } = useContext(StoreContext);
+  const { cart } = state;
+
+  const [CartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart?.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart]);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -76,9 +85,11 @@ const Header = () => {
             className=" w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center active:scale-90 transition-all duration-300 hover:bg-black/[0.05] cursor-pointer relative"
           >
             <BsCart className="text-[15px] md:text-[20px]" />
-            <p className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
-              3
-            </p>
+            {CartItemsCount > 0 && (
+              <p className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                {CartItemsCount}
+              </p>
+            )}
           </Link>
           {/* Cart Icon End */}
 

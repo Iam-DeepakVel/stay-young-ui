@@ -1,6 +1,8 @@
+import { StoreProvider } from "@/store/store";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +14,10 @@ export default function App({ Component, pageProps }: AppProps) {
         height={4}
         showOnShallow={true}
       />
-      <Component {...pageProps} />
+      <StoreProvider>
+        <Toaster position="top-center" />
+        <Component {...pageProps} />
+      </StoreProvider>
     </>
   );
 }

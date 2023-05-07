@@ -11,10 +11,10 @@ export const navLinks = [
     name: "Categories",
     url: "/category",
     subMenu: [
-      { id: 1, name: "sun screen", url: "/category/sun-screen" },
+      { id: 1, name: "Cleanser", url: "/category/cleanser" },
       { id: 2, name: "Toner / mist", url: "/category/toner" },
       { id: 3, name: "Serum / essence", url: "/category/serum" },
-      { id: 4, name: "lotion / cream", url: "/category/lotion" },
+      { id: 4, name: "Moisturizer", url: "/category/moisturizer" },
     ],
   },
   { id: 4, name: "Contact", url: "/contact" },

@@ -1,8 +1,13 @@
 import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/layouts/Wrapper";
+import data from "@/utils/data";
 import React from "react";
 
 const SingleCategory = ({ slug }: { slug?: string | string[] }) => {
+  const products = data.products.filter(
+    (product) => product.category.toLowerCase() === slug?.toString()
+  );
+  console.log("Products", products);
   return (
     <div className="w-full md:py-20">
       <Wrapper>
@@ -12,15 +17,9 @@ const SingleCategory = ({ slug }: { slug?: string | string[] }) => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0 place-items-center">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {products.map((product) => (
+            <ProductCard product={product} key={product.slug} />
+          ))}
         </div>
       </Wrapper>
     </div>
