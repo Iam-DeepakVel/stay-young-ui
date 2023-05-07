@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Start New Container') {
             steps {
-                sh 'docker run -p 3000:3000 -d --name stayyoung-ui stayyoung-ui'
+                sh 'docker run -p 3007:3000 -d --name stayyoung-ui stayyoung-ui'
             }
         }
     }
