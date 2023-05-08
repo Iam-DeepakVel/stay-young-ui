@@ -8,18 +8,18 @@ const ShowCaseProducts = () => {
   const hightestDiscountProducts = getHighestDiscountProducts(data.products);
   return (
     <Wrapper>
-      <div className="text-center  max-w-[800px] mx-auto my-[50px] md:my-[80px]">
+      <div className="max-w-7xl text-center my-[50px] md:my-[80px]">
         <h2 className=" text-[20px] md:text-[34px] mb-5 font-semibold">
-          Korean Beauty Products for Every Skin Type
+          BEST SELLER
         </h2>
-        <p className="text-md md:text-xl">
+        <p className="text-md md:text-xl md:w-3/4 md:mx-auto">
           Discover our carefully curated collection of Korean skin care products
           that are designed to provide you with healthy, glowing, and radiant
           skin.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0 place-items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0 place-items-center">
         {hightestDiscountProducts.map((product: any) => (
           <ProductCard product={product} key={product.slug} />
         ))}

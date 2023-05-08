@@ -19,3 +19,12 @@ export function getHighestDiscountProducts(products: any) {
   // Return the first 6 products in the sorted array
   return sortedProducts.slice(0, 6);
 }
+
+
+// Scroll to bottom of the current page
+export const scrollToBottom= () => {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth",
+  });
+};

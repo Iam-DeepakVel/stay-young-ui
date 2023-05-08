@@ -1,3 +1,4 @@
+import { scrollToBottom } from "@/utils/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -5,9 +6,8 @@ import { BsChevronDown } from "react-icons/bs";
 
 export const navLinks = [
   { id: 1, name: "Home", url: "/" },
-  { id: 2, name: "About", url: "/about" },
   {
-    id: 3,
+    id: 2,
     name: "Categories",
     url: "/category",
     subMenu: [
@@ -17,7 +17,7 @@ export const navLinks = [
       { id: 4, name: "Moisturizer", url: "/category/moisturizer" },
     ],
   },
-  { id: 4, name: "Contact", url: "/contact" },
+  { id: 3, name: "Contact" },
 ];
 
 const Menu = ({
@@ -28,6 +28,7 @@ const Menu = ({
   setShowCategoryMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { asPath } = useRouter();
+
   return (
     <ul className="hidden md:flex items-center gap-8 font-medium text-black">
       {navLinks.map((link) => (
@@ -65,12 +66,18 @@ const Menu = ({
             </li>
           ) : (
             <li className="cursor-pointer">
-              <Link
-                href={link.url!}
-                className={`${asPath === link.url && "font-extrabold"}`}
-              >
-                {link.name}
-              </Link>
+              {link.url ? (
+                <Link
+                  href={link.url!}
+                  className={`${asPath === link.url && "font-extrabold"}`}
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <div className=" cursor-pointer" onClick={scrollToBottom}>
+                  {link.name}
+                </div>
+              )}
             </li>
           )}
         </React.Fragment>

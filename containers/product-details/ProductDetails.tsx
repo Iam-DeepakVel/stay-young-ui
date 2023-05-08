@@ -9,6 +9,7 @@ import { StoreContext } from "@/store/store";
 import { calculateDiscountPercentage } from "@/utils/utils";
 import data from "@/utils/data";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 function ProductDetailsCarousel({
   productImages,
@@ -38,14 +39,15 @@ function ProductDetailsCarousel({
 
 const ProductDetails = ({ product }: any) => {
   const { state, dispatch } = useContext(StoreContext);
+
   const AddToCartHandler = () => {
     const existItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    if (quantity > product.countInStock) {
-      toast.error("Out Of Stock");
+    if (quantity > 15) {
+      toast.error("Max quantity selected");
       return;
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });

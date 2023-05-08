@@ -19,7 +19,7 @@ export const Footer = () => {
           alt="stay-young-product"
           className="absolute inset-0 object-cover w-full h-full"
         />
-        <div className="absolute top-8 w-3/4 lg:top-20 left-8">
+        <div className="absolute top-8 w-3/4 lg:top-12 left-8">
           <h2 className=" font-bruno text-2xl mb-4">Stay Young</h2>
           <p className="block lg:hidden text-black text-md mb-4">
             Unlock the secret to timeless beauty with Stay Young - where age is
@@ -46,7 +46,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
+      <div className="px-4 py-6 sm:px-6 lg:col-span-3 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
@@ -55,13 +55,13 @@ export const Footer = () => {
               </span>
               <a
                 href="tel:+919734567890"
-                className="block text-sm font-medium text-white hover:opacity-75 sm:text-lg"
+                className="block text-sm font-medium text-white hover:opacity-75 sm:text-md"
               >
-                +91 9734567890 ,
+                +91 9734567890 
               </a>
               <a
                 href="tel:+9173423423422"
-                className="block text-sm mb-3 font-medium text-white hover:opacity-75 sm:text-lg"
+                className="block text-sm mb-3 font-medium text-white hover:opacity-75 sm:text-md"
               >
                 +91 73423423422
               </a>
@@ -73,18 +73,18 @@ export const Footer = () => {
 
               <a
                 href="mailto:stayyoungofficial@mailinator.com"
-                className="block text-sm font-medium text-white hover:opacity-75 sm:text-lg"
+                className="block text-sm font-medium text-white hover:opacity-75 sm:text-md"
               >
                 stayyoungofficial@mailinator.com
               </a>
             </p>
 
-            <ul className="mt-8 space-y-1 text-sm text-white">
+            <ul className="mt-4 space-y-1 text-sm text-white">
               <li>Monday to Friday: 10am - 5pm</li>
               <li>Weekend: 10am - 3pm</li>
             </ul>
 
-            <ul className="flex gap-6 mt-8">
+            <ul className="flex gap-6 mt-4">
               <li>
                 <a
                   href="tel:+919734567890"
@@ -131,10 +131,10 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="grid grid-cols-2 gap-8">
             <div>
               <p className="font-medium text-white">Top Categories</p>
-              <nav aria-label="Footer Navigation - Services" className="mt-6">
+              <nav aria-label="Footer Navigation - Services" className="mt-4">
                 <ul className="space-y-4 text-sm">
                   <li>
                     <a
@@ -177,7 +177,7 @@ export const Footer = () => {
 
             <div>
               <p className="font-medium text-white">Useful Links</p>
-              <nav aria-label="Footer Navigation - Company" className="mt-6">
+              <nav aria-label="Footer Navigation - Company" className="mt-4">
                 <ul className="space-y-4 text-sm">
                   <li>
                     <Link
@@ -211,7 +211,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 mt-12 border-t border-white">
+        <div className="pt-4 mt-8 border-t border-white">
           <div className="sm:flex sm:items-center sm:justify-between">
             <nav aria-label="Footer Navigation - Support">
               <ul className="flex flex-wrap gap-4 text-xs">
@@ -235,7 +235,7 @@ export const Footer = () => {
               </ul>
             </nav>
 
-            <p className="mt-8 text-xs text-white sm:mt-0">
+            <p className="mt-4 text-xs text-white sm:mt-0">
               &copy; {new Date().getFullYear()} Stay Young. All rights reserved.
             </p>
           </div>

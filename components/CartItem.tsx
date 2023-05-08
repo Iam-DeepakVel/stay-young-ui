@@ -1,4 +1,6 @@
 import { StoreContext } from "@/store/store";
+import Image from "next/image";
+import Link from "next/link";
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -23,26 +25,32 @@ const CartItem = ({ item }: any) => {
   return (
     <div className=" flex py-5  relative gap-3 md:gap-5 border-b">
       {/* Image */}
-      <div className=" shrink-0 aspect-square w-[50px] md:w-[120px]">
-        <img src={item.image[0]} alt={item.name} />
-      </div>
+      <Link
+        href={`/product/${item.slug}`}
+        className=" shrink-0 aspect-square w-[50px] md:w-[120px]"
+      >
+        <Image src={item.image[0]} alt={item.name} width={500} height={500} />
+      </Link>
 
       <div className=" w-full flex flex-col">
         <div className=" flex flex-col md:flex-row justify-between">
           {/* Product Title */}
-          <h2 className=" text-lg md:text-2xl font-semibold text-black/[0.8]">
+          <Link
+            href={`/product/${item.slug}`}
+            className=" text-lg md:text-2xl font-semibold text-black/[0.8]"
+          >
             {item.name}
-          </h2>
+          </Link>
           {/* Product Sub Title */}
           <h4 className="text-sm md:text-md font-medium text-black/[0.5] block md:hidden">
             {item.subName}
           </h4>
           {/*Product Price  */}
-          <div>
+          <div className="flex items-center gap-2">
             <p className=" text-sm md:text-lg font-bold  mt-2">
               ₹ {item.discountedPrice}
             </p>
-            <p className="text-black/[0.5] text-xs text-end font-medium line-through">
+            <p className="text-black/[0.5] text-xs pt-2 font-medium line-through">
               ₹{item?.price}
             </p>
           </div>
@@ -60,7 +68,7 @@ const CartItem = ({ item }: any) => {
               onChange={(e) => updateCarthandler(item, e.target.value)}
               className=" p-1 text-center hover:text-black"
             >
-              {[...Array(item.countInStock).keys()].map((x) => (
+              {[...Array(15).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>
                   {x + 1}
                 </option>

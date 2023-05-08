@@ -4,7 +4,6 @@ import { StoreContext } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import dynamic from "next/dynamic";
 
 const Cart = () => {
   const { state, dispatch } = useContext(StoreContext);

@@ -34,7 +34,7 @@ const carousels = [
 
 const HeroBanner = () => {
   return (
-    <div className="relative text-white text-[20px] w-full max-w-[1360px]  mx-auto">
+    <div className="relative text-white text-[20px] w-full max-w-[1920px]  mx-auto">
       <Carousel
         autoPlay={true}
         infiniteLoop={true}
@@ -64,8 +64,8 @@ const HeroBanner = () => {
           <div key={carousel.tag}>
             {/*Image  */}
             <Image
-              width={500}
-              height={500}
+              width={5000}
+              height={5000}
               priority
               src={carousel.src}
               className="aspect-[16/10] h-[400px] md:h-[600px] md:aspect-auto object-cover"

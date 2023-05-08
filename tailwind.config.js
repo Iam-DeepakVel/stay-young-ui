@@ -13,6 +13,7 @@ module.exports = {
         poppins: "Poppins, sans-serif",
         urbanist: "Urbanist, sans-serif",
         bruno: "Bruno Ace SC, sans-serif",
+        gochiHand: "Gochi Hand, cursive",
       },
     },
   },

@@ -50,7 +50,7 @@ const Header = () => {
       <Wrapper className="h-[60px] flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <p className="font-bruno text-2xl font-bold tracking-wider">
+          <p className="font-gochiHand text-2xl font-bold tracking-wider">
             Stay Young
           </p>
         </Link>

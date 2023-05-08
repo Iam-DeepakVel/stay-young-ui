@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { navLinks } from "./Menu";
+import { scrollToBottom } from "@/utils/utils";
 
 const MenuMobile = ({
   showCategoryMenu,
@@ -47,9 +48,21 @@ const MenuMobile = ({
             </li>
           ) : (
             <li className="py-4 px-5 border-b">
-              <Link href={link.url!} onClick={() => setMobileMenu(false)}>
-                {link.name}
-              </Link>
+              {link.url ? (
+                <Link href={link.url!} onClick={() => setMobileMenu(false)}>
+                  {link.name}
+                </Link>
+              ) : (
+                <div
+                  onClick={() => {
+                    scrollToBottom();
+                    setMobileMenu(false);
+                  }}
+                  className="cursor-pointer"
+                >
+                  {link.name}
+                </div>
+              )}
             </li>
           )}
         </React.Fragment>

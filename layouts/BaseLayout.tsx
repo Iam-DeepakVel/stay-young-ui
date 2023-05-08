@@ -20,7 +20,7 @@ const BaseLayout = ({ children, title }: BaseLayoutProps) => {
       </Head>
       <div>
         <Header />
-        <main className="font-urbanist">{children}</main>
+        <main>{children}</main>
         <Footer />
       </div>
     </>
