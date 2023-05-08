@@ -4,6 +4,7 @@ import { AiOutlineInstagram, AiOutlinePhone } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
@@ -11,7 +12,7 @@ export const Footer = () => {
       aria-label="Site Footer"
       className="bg-[#0a0a0a] lg:grid lg:grid-cols-5"
     >
-      <div className="relative block h-60 lg:col-span-2 lg:h-full">
+      <div className="relative block h-44 lg:col-span-2 lg:h-full">
         <Image
           width={500}
           height={500}
@@ -19,8 +20,8 @@ export const Footer = () => {
           alt="stay-young-product"
           className="absolute inset-0 object-cover w-full h-full"
         />
-        <div className="absolute top-8 w-3/4 lg:top-12 left-8">
-          <h2 className=" font-bruno text-2xl mb-4">Stay Young</h2>
+        <div className="absolute top-5 w-3/4 lg:top-12 left-8">
+          <h2 className=" font-gochiHand text-2xl mb-4">Stay Young</h2>
           <p className="block lg:hidden text-black text-md mb-4">
             Unlock the secret to timeless beauty with Stay Young - where age is
             just a number, and radiance is forever.
@@ -32,17 +33,6 @@ export const Footer = () => {
             looks and feels amazing.Say goodbye to dull, tired skin and hello to
             radiant, youthful skin with Stay Young.{" "}
           </p>
-          <Link
-            href="/"
-            className="relative items-center justify-start inline-block px-5 py-3 overflow-hidden font-bold group"
-          >
-            <span className="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-black opacity-[3%]"></span>
-            <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-black opacity-100 group-hover:-translate-x-8"></span>
-            <span className="relative w-full text-left text-black transition-colors duration-200 ease-in-out group-hover:text-white">
-              Explore More
-            </span>
-            <span className="absolute inset-0 border-2 border-black"></span>
-          </Link>
         </div>
       </div>
 
@@ -57,7 +47,7 @@ export const Footer = () => {
                 href="tel:+919734567890"
                 className="block text-sm font-medium text-white hover:opacity-75 sm:text-md"
               >
-                +91 9734567890 
+                +91 9734567890
               </a>
               <a
                 href="tel:+9173423423422"
@@ -85,49 +75,49 @@ export const Footer = () => {
             </ul>
 
             <ul className="flex gap-6 mt-4">
-              <li>
+              <motion.li whileHover={{ y: -4 }}>
                 <a
                   href="tel:+919734567890"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-white transition hover:opacity-75"
+                  className="text-white"
                 >
                   <AiOutlinePhone size={20} />
                 </a>
-              </li>
+              </motion.li>
 
-              <li>
+              <motion.li whileHover={{ y: -4 }}>
                 <a
                   href="mailto:stayyoungofficial@mailinator.com"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-white transition hover:opacity-75"
+                  className="text-white"
                 >
                   <BiMailSend size={20} />
                 </a>
-              </li>
+              </motion.li>
 
-              <li>
+              <motion.li whileHover={{ y: -4 }}>
                 <a
                   href="https://wa.me/+919734567890"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-white transition hover:opacity-75"
+                  className="text-white"
                 >
                   <FaWhatsapp size={20} />
                 </a>
-              </li>
+              </motion.li>
 
-              <li>
+              <motion.li whileHover={{ y: -4 }}>
                 <a
                   href="/"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-white transition hover:opacity-75"
+                  className="text-white"
                 >
                   <AiOutlineInstagram size={20} />
                 </a>
-              </li>
+              </motion.li>
             </ul>
           </div>
 

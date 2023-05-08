@@ -66,7 +66,7 @@ const CartItem = ({ item }: any) => {
             <select
               value={item.quantity}
               onChange={(e) => updateCarthandler(item, e.target.value)}
-              className=" p-1 text-center hover:text-black"
+              className=" p-1 text-center bg-black/[0.05] hover:text-black"
             >
               {[...Array(15).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>

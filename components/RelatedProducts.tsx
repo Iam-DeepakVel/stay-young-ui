@@ -36,7 +36,6 @@ const RelatedProducts = ({ relatedProducts }: any) => {
           <ProductCard product={product} key={product.slug} />
         ))}
       </Carousel>
-      ;
     </div>
   );
 };

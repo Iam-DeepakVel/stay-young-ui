@@ -8,7 +8,7 @@ export const navLinks = [
   { id: 1, name: "Home", url: "/" },
   {
     id: 2,
-    name: "Categories",
+    name: "View Products",
     url: "/category",
     subMenu: [
       { id: 1, name: "Cleanser", url: "/category/cleanser" },
@@ -69,13 +69,24 @@ const Menu = ({
               {link.url ? (
                 <Link
                   href={link.url!}
-                  className={`${asPath === link.url && "font-extrabold"}`}
+                  className={`${
+                    asPath === link.url && ""
+                  } group transition duration-300 cursor-pointer`}
                 >
                   {link.name}
+                  <span
+                    className={`${
+                      asPath === link.url && "max-w-full"
+                    } block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-black/[0.8]`}
+                  ></span>
                 </Link>
               ) : (
-                <div className=" cursor-pointer" onClick={scrollToBottom}>
+                <div
+                  className="group transition duration-300 cursor-pointer"
+                  onClick={scrollToBottom}
+                >
                   {link.name}
+                  <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-black/[0.8]"></span>
                 </div>
               )}
             </li>

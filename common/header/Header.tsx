@@ -8,6 +8,8 @@ import { VscChromeClose } from "react-icons/vsc";
 import { BiMenuAltRight } from "react-icons/bi";
 import MenuMobile from "@/common/header/MenuMobile";
 import { StoreContext } from "@/store/store";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const [show, setShow] = useState("translate-y-0");
@@ -45,15 +47,37 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[80px] bg-white/90 items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show} `}
+      className={`w-full h-[60px] md:h-[80px] bg-white items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show} `}
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         {/* Logo */}
-        <Link href="/">
-          <p className="font-gochiHand text-2xl font-bold tracking-wider">
-            Stay Young
-          </p>
-        </Link>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+          variants={{
+            hidden: { opacity: 0, x: -80 },
+            visible: { opacity: 1, x: 0 },
+          }}
+        >
+          <Link href="/" className="flex">
+            <Image
+              width={500}
+              height={500}
+              src="/assets/images/logo-text.jpeg"
+              className="w-24 h-10 -mr-1 md:w-32 md:h-12 md:mt-5 md:-mr-2"
+              alt="stayyoung-logo"
+            />
+            <Image
+              width={500}
+              height={500}
+              src="/assets/images/logo-img.png"
+              className="w-8 h-8 -mt-2 md:w-10 md:h-10 md:mt-3"
+              alt="stayyoung-logo"
+            />
+          </Link>
+        </motion.div>
 
         {/* Nav Links */}
         <Menu
@@ -72,37 +96,42 @@ const Header = () => {
         {/* Nav Icons - Cart , Heart , Hamburger */}
         <div className=" flex items-center gap-2 text-black">
           {/* Heart Icon Start */}
-          <div className=" w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center active:scale-90 transition-all duration-300 hover:bg-black/[0.05] cursor-pointer relative">
-            <IoMdHeartEmpty className="text-[15px] md:text-[20px]" />
+          <motion.div
+            whileTap={{ scale: 0.6 }}
+            className=" w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative"
+          >
+            <IoMdHeartEmpty className="text-[18px] md:text-[20px]" />
             <p className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
               17
             </p>
-          </div>
+          </motion.div>
           {/* Heart Icon End */}
           {/* Cart Icon Start */}
-          <Link
-            href="/cart"
-            className=" w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center active:scale-90 transition-all duration-300 hover:bg-black/[0.05] cursor-pointer relative"
-          >
-            <BsCart className="text-[15px] md:text-[20px]" />
-            {CartItemsCount > 0 && (
-              <p className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
-                {CartItemsCount}
-              </p>
-            )}
-          </Link>
+          <motion.div whileTap={{ scale: 0.6 }}>
+            <Link
+              href="/cart"
+              className=" w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center   hover:bg-black/[0.05] cursor-pointer relative"
+            >
+              <BsCart className="text-[18px] md:text-[20px]" />
+              {CartItemsCount > 0 && (
+                <p className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                  {CartItemsCount}
+                </p>
+              )}
+            </Link>
+          </motion.div>
           {/* Cart Icon End */}
 
           {/*Hamburger Icon Start  */}
           <div className=" w-8 md:w-12 md:hidden h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
             {mobileMenu ? (
               <VscChromeClose
-                className=" text-[16px] active:scale-75 transition-all duration-300"
+                className=" text-[18px] active:scale-75 transition-all duration-300"
                 onClick={() => setMobileMenu(false)}
               />
             ) : (
               <BiMenuAltRight
-                className="text-[20px] active:scale-75 transition-all duration-300"
+                className="text-[22px] active:scale-75 transition-all duration-300"
                 onClick={() => setMobileMenu(true)}
               />
             )}

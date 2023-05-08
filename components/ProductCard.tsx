@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 import { BsCart2 } from "react-icons/bs";
 import { IoMdHeartEmpty } from "react-icons/io";
 
-const ProductCard = ({ product }: any) => {
+const ProductCard = ({ product, showBestSellerTag }: any) => {
   const [showIcons, setShowIcons] = useState(false);
 
   const { state, dispatch } = useContext(StoreContext);
@@ -46,9 +46,15 @@ const ProductCard = ({ product }: any) => {
         <IoMdHeartEmpty className=" w-4 h-4 sm:w-6 sm:h-6" />
       </div>
 
+      {/*Best Tag  */}
+      {showBestSellerTag && (
+        <div className="bg-black w-24 h-7 md:w-28 md:h-10  flex flex-col items-center justify-center absolute top-0 left-0">
+          <h2 className=" text-white text-sm md:text-md">Best Seller</h2>
+        </div>
+      )}
       <Link
         href={`/product/${product?.slug}`}
-        className=" overflow-hidden bg-white cursor-pointer"
+        className=" overflow-hidden cursor-pointer"
       >
         <Image
           src={product?.image[1]}
@@ -56,10 +62,12 @@ const ProductCard = ({ product }: any) => {
           width={500}
           height={500}
         />
-        <div className=" py-4 md:p-4  text-black/[0.9]">
-          <h2 className=" text-sm md:text-lg font-medium">{product.name}</h2>
+        <div className="py-4 md:p-4  text-black/[0.9]">
+          <h2 className=" text-xs sm:text-sm md:text-lg font-medium">
+            {product.name}
+          </h2>
           <div className=" flex items-center text-black/[0.5]">
-            <p className=" mr-2 text-md md:text-lg font-semibold">
+            <p className=" mr-2 text-sm md:text-lg font-semibold">
               ₹{product?.discountedPrice}
             </p>
             <p className=" text-xs md:text-base font-medium line-through">

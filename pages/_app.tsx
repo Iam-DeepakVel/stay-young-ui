@@ -1,5 +1,6 @@
 import { StoreProvider } from "@/store/store";
 import "@/styles/globals.css";
+import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";

@@ -5,7 +5,7 @@ import data from "@/utils/data";
 import { getHighestDiscountProducts } from "@/utils/utils";
 
 const ShowCaseProducts = () => {
-  const hightestDiscountProducts = getHighestDiscountProducts(data.products);
+  const highestDiscountProducts = getHighestDiscountProducts(data.products);
   return (
     <Wrapper>
       <div className="max-w-7xl text-center my-[50px] md:my-[80px]">
@@ -19,9 +19,14 @@ const ShowCaseProducts = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0 place-items-center">
-        {hightestDiscountProducts.map((product: any) => (
-          <ProductCard product={product} key={product.slug} />
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 my-14  md:px-0 place-items-center">
+        {highestDiscountProducts.map((product: any) => (
+          <ProductCard
+            product={product}
+            key={product.slug}
+            productsLength={highestDiscountProducts.length}
+            showBestSellerTag={true}
+          />
         ))}
       </div>
     </Wrapper>

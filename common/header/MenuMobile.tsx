@@ -3,6 +3,7 @@ import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { navLinks } from "./Menu";
 import { scrollToBottom } from "@/utils/utils";
+import { motion } from "framer-motion";
 
 const MenuMobile = ({
   showCategoryMenu,
@@ -14,7 +15,17 @@ const MenuMobile = ({
   setMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <ul className="flex bg-white flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] border-t text-black">
+    <motion.ul
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      variants={{
+        hidden: { opacity: 0, x: -80 },
+        visible: { opacity: 1, x: 0 },
+      }}
+      className="flex bg-white flex-col md:hidden font-bold absolute top-[50px] left-0 w-full h-[calc(100vh-50px)] border-t text-black"
+    >
       {navLinks.map((link) => (
         <React.Fragment key={link.id}>
           {link.subMenu ? (
@@ -28,7 +39,17 @@ const MenuMobile = ({
               </div>
 
               {showCategoryMenu && (
-                <ul className="bg-black/[0.01] -mx-5 mt-4 -mb-4">
+                <motion.ul
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  variants={{
+                    hidden: { opacity: 0, x: -80 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  className="bg-black/[0.01] -mx-5 mt-4 -mb-4"
+                >
                   {link.subMenu.map((subMenuItem) => (
                     <Link
                       key={subMenuItem.id}
@@ -43,7 +64,7 @@ const MenuMobile = ({
                       </li>
                     </Link>
                   ))}
-                </ul>
+                </motion.ul>
               )}
             </li>
           ) : (
@@ -67,7 +88,7 @@ const MenuMobile = ({
           )}
         </React.Fragment>
       ))}
-    </ul>
+    </motion.ul>
   );
 };
 
