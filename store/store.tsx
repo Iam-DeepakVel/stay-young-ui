@@ -37,14 +37,18 @@ function reducer(state: IState, action: IAction) {
         : [...state.cart.cartItems, newItem];
       // Update the cookie for cart key
       // Objects cant be saved in cookie , so converting to string and saving
-      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }));
+      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }), {
+        expires: 365,
+      });
       return { ...state, cart: { ...state.cart, cartItems } };
     }
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.cartItems.filter(
         (item) => item.slug !== action.payload.slug
       );
-      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }));
+      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems }), {
+        expires: 365,
+      });
       return { ...state, cart: { ...state.cart, cartItems } };
     }
     default:
