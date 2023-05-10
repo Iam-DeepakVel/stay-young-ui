@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { BsCart2 } from "react-icons/bs";
-import { IoMdHeartEmpty } from "react-icons/io";
 
 const ProductCard = ({ product, showBestSellerTag }: any) => {
   const [showIcons, setShowIcons] = useState(false);
@@ -42,9 +41,6 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
           <BsCart2 size={25} />
         </button>
       )}
-      <div className="absolute top-2 right-2 bg-white/[0.7] p-2 rounded-full  md:top-4 md:right-4 space-y-4 text-black/[0.7] hover:text-red-500 hover:scale-110 cursor-pointer transform duration-200">
-        <IoMdHeartEmpty className=" w-4 h-4 sm:w-6 sm:h-6" />
-      </div>
 
       {/*Best Tag  */}
       {showBestSellerTag && (

@@ -79,7 +79,7 @@ const HeroBanner = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  transition={{ duration: 0.8 }}
                   variants={{
                     hidden: { opacity: 0, x: +120 },
                     visible: { opacity: 1, x: 0 },
@@ -92,7 +92,7 @@ const HeroBanner = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.7, delay: 0.4 }}
+                  transition={{ duration: 0.9 }}
                   variants={{
                     hidden: { opacity: 0, x: +120 },
                     visible: { opacity: 1, x: 0 },
@@ -105,7 +105,7 @@ const HeroBanner = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 1, delay: 0.1 }}
                   variants={{
                     hidden: { opacity: 0, x: +120 },
                     visible: { opacity: 1, x: 0 },
@@ -119,7 +119,7 @@ const HeroBanner = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 1.2, delay: 0.8 }}
+                transition={{ duration: 1.1, delay: 0.4 }}
                 variants={{
                   hidden: { opacity: 0, x: +120 },
                   visible: { opacity: 1, x: 0 },

@@ -3,13 +3,11 @@ import Wrapper from "@/layouts/Wrapper";
 import React, { useContext } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { IoMdHeartEmpty } from "react-icons/io";
 import RelatedProducts from "@/components/RelatedProducts";
 import { StoreContext } from "@/store/store";
 import { calculateDiscountPercentage } from "@/utils/utils";
 import data from "@/utils/data";
 import { toast } from "react-hot-toast";
-import Image from "next/image";
 
 function ProductDetailsCarousel({
   productImages,
@@ -110,14 +108,9 @@ const ProductDetails = ({ product }: any) => {
             {/*Add to Cart*/}
             <button
               onClick={AddToCartHandler}
-              className=" w-full py-4 mt-10 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              className=" w-full py-4 mt-10 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-8 hover:opacity-75"
             >
               Add to Cart
-            </button>
-            {/* Add to WishList */}
-            <button className="group w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-              Whishlist
-              <IoMdHeartEmpty size={20} className="group-hover:text-red-600" />
             </button>
             <div>
               <h1 className="text-[24px] mb-4 font-bold">Product Details</h1>

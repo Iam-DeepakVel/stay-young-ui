@@ -28,7 +28,7 @@ const RelatedProducts = ({ relatedProducts }: any) => {
         ssr={true}
         containerClass="-mx-[10px]"
         itemClass="px-[10px]"
-        autoPlaySpeed={1500}
+        autoPlaySpeed={2500}
         infinite={true}
         responsive={responsive}
       >
