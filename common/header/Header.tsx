@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[60px] md:h-[80px] bg-white items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show} `}
+      className={`w-full h-[60px] py-1 md:py-0 md:h-[80px] bg-white items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show} `}
     >
       <Wrapper className="h-[60px] flex justify-between items-center">
         {/* Logo */}
@@ -64,7 +64,7 @@ const Header = () => {
             <Image
               width={500}
               height={500}
-              src="/assets/images/logo-text.jpeg"
+              src="/assets/images/logo-text.png"
               className="w-24 h-10 -mr-1 md:w-32 md:h-12 md:mt-5 md:-mr-2"
               alt="stayyoung-logo"
             />
