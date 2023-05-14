@@ -111,3 +111,15 @@
   }
 }
 /* PRODUCT DETAILS CAROUSEL STYLING CUSTOMIZATION END */
+
+.form-input {
+  @apply border-b border-[#DBDBDB] w-full px-1.5 py-2 focus:outline-none bg-transparent;
+}
+
+.form-label {
+  @apply w-full block text-sm text-[#525252];
+}
+
+.form-error-text {
+  @apply text-xs text-red-500 flex items-center gap-1;
+}
