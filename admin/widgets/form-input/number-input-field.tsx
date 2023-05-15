@@ -1,20 +1,18 @@
-import { FieldError, RegisterOptions, UseFormRegister } from "react-hook-form";
+import { FieldError, UseFormRegister } from "react-hook-form";
 
 export interface InputFieldProps {
   name: string;
   label?: string;
   register: UseFormRegister<any>;
-  registerOptions?: RegisterOptions;
-  errors?: FieldError;
+  error?: FieldError;
   className?: string;
   [x: string]: any;
 }
 
-const InputField = ({
+const NumberInputField = ({
   name,
   label,
   register,
-  registerOptions,
   error,
   className,
   ...props
@@ -25,7 +23,9 @@ const InputField = ({
         {label}
       </label>
       <input
-        {...register(name, registerOptions)}
+        {...register(name, {
+          setValueAs: (v) => (v === "" ? undefined : parseInt(v, 10)),
+        })}
         {...props}
         className={`${className ? className : "form-input"}`}
       />
@@ -34,4 +34,4 @@ const InputField = ({
   );
 };
 
-export default InputField;
+export default NumberInputField;

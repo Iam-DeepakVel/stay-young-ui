@@ -1,10 +1,10 @@
-import Product from "@/admin/containers/Product";
+import AllProducts from "@/admin/containers/product/AllProducts";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
 
 const ProductsPage = () => {
   return (
     <AdminBaseLayout title="Products">
-      <Product />;
+      <AllProducts />;
     </AdminBaseLayout>
   );
 };

@@ -1,4 +1,4 @@
-import Coupons from "@/admin/containers/Coupon";
+import Coupons from "@/admin/containers/coupon/Coupon";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
 
 const CouponsPage = () => {

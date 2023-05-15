@@ -1,10 +1,10 @@
-import Category from "@/admin/containers/Category";
+import AllCategories from "@/admin/containers/category/AllCategories";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
 
 const CategoriesPage = () => {
   return (
     <AdminBaseLayout title="Categories">
-      <Category />;
+      <AllCategories />;
     </AdminBaseLayout>
   );
 };

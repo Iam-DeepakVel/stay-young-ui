@@ -45,6 +45,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
     if (!loading && !user) {
       router.push("/admin");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
 
   if (loading) {
@@ -164,7 +165,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                                     href={item.href}
                                     className={`
                                       ${
-                                        item.href === router.pathname
+                                        router.pathname.includes(item.href)
                                           ? "bg-black text-white"
                                           : "text-gray-700 hover:text-white hover:bg-black"
                                       }
@@ -173,7 +174,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                                   >
                                     <item.icon
                                       className={classNames(
-                                        item.href === router.pathname
+                                        router.pathname.includes(item.href)
                                           ? "text-white"
                                           : "text-gray-400 group-hover:text-white",
                                         "h-6 w-6 shrink-0"
@@ -249,7 +250,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                           <a
                             href={item.href}
                             className={classNames(
-                              item.href === router.pathname
+                              router.pathname.includes(item.href)
                                 ? "bg-black text-white"
                                 : "text-gray-700 hover:text-white hover:bg-black",
                               "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
@@ -257,7 +258,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                           >
                             <item.icon
                               className={classNames(
-                                item.href === router.pathname
+                                router.pathname.includes(item.href)
                                   ? "text-white"
                                   : "text-gray-400 group-hover:text-white",
                                 "h-6 w-6 shrink-0"
