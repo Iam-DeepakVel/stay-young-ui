@@ -7,20 +7,17 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 
 const loginFormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(6, "Password must have more than 6 characters"),
+  password: z.string().min(1, "Password is required"),
 });
 
 type LoginFormSchemaType = z.infer<typeof loginFormSchema>;
 
 const Login = () => {
-  const [error, setError] = useState<string | undefined>();
-
+  const [error, setError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -36,6 +33,7 @@ const Login = () => {
     password,
   }) => {
     try {
+      const loginToast = toast.loading("Logging in...");
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/auth/login`,
         {
@@ -49,10 +47,15 @@ const Login = () => {
         const { access_token } = data;
 
         Cookies.set("access_token", access_token);
+        toast.success("Login Successfull", {
+          id: loginToast,
+        });
         router.push("/admin/products");
       } else {
         const errorData = await response.json();
-        setError(errorData.message);
+        toast.error(errorData.message, {
+          id: loginToast,
+        });
       }
     } catch (error) {
       setError("An error occurred. Please try again later");
@@ -60,6 +63,7 @@ const Login = () => {
   };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 md:py-20">
+      {error && <p className="text-md text-red-500 mb-4">{error}</p>}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Image
           className="mx-auto h-16 w-auto"
@@ -83,6 +87,7 @@ const Login = () => {
               register={register}
               placeholder="Enter the email"
               error={errors.email}
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
 
@@ -94,6 +99,7 @@ const Login = () => {
               register={register}
               placeholder="Enter the password"
               error={errors.password}
+              className="w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
 

@@ -335,9 +335,12 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2.5 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                        <button className="block px-3 text-sm leading-6 text-gray-900 hover:bg-gray-100 w-full py-2 text-left">
+                        <Link
+                          href="/admin/settings/reset-password"
+                          className="block px-3 text-sm leading-6 text-gray-900 hover:bg-gray-100 w-full py-2 text-left"
+                        >
                           Reset Password
-                        </button>
+                        </Link>
                         <button
                           onClick={handleLogout}
                           className="block px-3 text-sm leading-6 text-gray-900 hover:bg-gray-100 w-full py-2 text-left"

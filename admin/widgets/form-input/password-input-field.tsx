@@ -16,11 +16,13 @@ const PasswordInputField = ({
       <label htmlFor={name} className="form-label text-sec-text text-b4 mb-2">
         {label}
       </label>
-      <div className=" flex items-center">
+      <div className="relative flex items-center">
         <input
           {...register(name, registerOptions)}
           {...props}
-          className="form-input"
+          className={
+            "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+          }
           type={visiblePassword ? "text" : "password"}
         />
         <Image
@@ -32,7 +34,7 @@ const PasswordInputField = ({
               : "/assets/icons/eye-slash.svg"
           }`}
           alt="eye"
-          className="mt-1 cursor-pointer border-b border-gray-300 py-2"
+          className="absolute right-2  cursor-pointer bottom-[0.5px] my-2"
           onClick={() => setVisiblePassword(!visiblePassword)}
         />
       </div>
