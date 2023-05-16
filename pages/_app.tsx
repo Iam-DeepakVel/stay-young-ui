@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
+import "react-multi-carousel/lib/styles.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

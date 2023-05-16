@@ -1,16 +1,35 @@
+import Loading from "@/common/loading/Loading";
 import ProductDetails from "@/containers/product-details/ProductDetails";
 import BaseLayout from "@/layouts/BaseLayout";
-import data from "@/utils/data";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const ProductDetailsPage = () => {
-  const { query } = useRouter();
-  const { slug } = query;
-  const product = data.products.find((x) => x.slug === slug);
-  if (!product) {
-    return <p className="text-2xl ">Oops! Product Not Found. {slug}</p>;
-  }
-  return (
+  const router = useRouter();
+  const { slug } = router.query;
+  const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState<any>();
+
+  useEffect(() => {
+    async function fetchSingleProduct() {
+      if (slug) {
+        setLoading(true);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/slug/${slug}`
+        );
+        const product = await res.json();
+        setProduct(product);
+        setLoading(false);
+      }
+    }
+    fetchSingleProduct();
+  }, [slug]);
+
+  console.log("PRODUCT", product);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <BaseLayout title={slug ? slug.toString() : ""}>
       <ProductDetails product={product} />
     </BaseLayout>

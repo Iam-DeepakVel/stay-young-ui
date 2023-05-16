@@ -1,5 +1,6 @@
 import ProductForm from "@/admin/containers/product/ProductForm";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
+import Loading from "@/common/loading/Loading";
 import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 
@@ -31,6 +32,6 @@ export default function EditProductPage() {
       <ProductForm productToEdit={product} />
     </AdminBaseLayout>
   ) : (
-    <div>Loading</div>
+    <Loading />
   );
 }

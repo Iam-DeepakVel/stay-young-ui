@@ -1,32 +1,12 @@
+import { CategoryDto } from "@/pages/admin/categories/[id]";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 
-const categories = [
-  {
-    name: "Cleanser",
-    image: "/assets/images/p1.jpg",
-    href: "/category/cleanser",
-  },
-  {
-    name: "Toner",
-    image: "/assets/images/p2.jpg",
-    href: "/category/toner",
-  },
-  {
-    name: "Serum",
-    image: "/assets/images/p3.jpg",
-    href: "/category/serum",
-  },
-  {
-    name: "Moisturizer",
-    image: "/assets/images/p1.jpg",
-    href: "/category/moisturizer",
-  },
-];
-
 const AllCategories = () => {
+  const [categories, setCategories] = useState<CategoryDto[] | null>(null);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -41,6 +21,18 @@ const AllCategories = () => {
       items: 1,
     },
   };
+  // Fetching Categories
+  useEffect(() => {
+    async function fetchCategories() {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
+      );
+      const categories = await res.json();
+      setCategories(categories);
+    }
+    fetchCategories();
+  }, []);
+
   return (
     <div className="w-full max-w-7xl mx-auto md:px-10">
       <div className="flex flex-col md:flex-row my-[50px] md:my-[100px] md:border-b md:pb-24">
@@ -64,10 +56,10 @@ const AllCategories = () => {
         {/* Categories Section */}
         <div className="md:flex-[2] w-full pl-2 border-b sm:border-none pb-8 sm:pb-0 ">
           <div className="flex items-center gap-6 md:gap-10 overflow-x-scroll scroll-smooth scrollbar-hide md:p-4">
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <Link
-                key={category.name}
-                href={category.href}
+                key={category._id}
+                href={`/category/${category.name.toLowerCase()}`}
                 className="py-4 flex-shrink-0 cursor-pointer hover:scale-110 transform duration-200 ease-in-out"
               >
                 <Image
@@ -77,7 +69,7 @@ const AllCategories = () => {
                   alt="category-image"
                   className="w-28 h-28 sm:w-36 sm:h-36  rounded-[40px]"
                 />
-                <p className="text-center">{category.name}</p>
+                <p className="text-center mt-2">{category.name}</p>
               </Link>
             ))}
           </div>

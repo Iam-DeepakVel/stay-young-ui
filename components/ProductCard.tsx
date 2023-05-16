@@ -53,7 +53,7 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
         className=" overflow-hidden cursor-pointer"
       >
         <Image
-          src={product?.image[1]}
+          src={product?.images[0]}
           alt="product-image"
           width={500}
           height={500}

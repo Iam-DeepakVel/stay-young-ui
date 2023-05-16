@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import ProductCard from "./ProductCard";
 
 const RelatedProducts = ({ relatedProducts }: any) => {
@@ -26,14 +25,14 @@ const RelatedProducts = ({ relatedProducts }: any) => {
       <Carousel
         autoPlay={true}
         ssr={true}
-        containerClass="-mx-[10px]"
+        containerClass="-mx-[10px] w-full"
         itemClass="px-[10px]"
         autoPlaySpeed={2500}
         infinite={true}
         responsive={responsive}
       >
-        {relatedProducts.map((product: any) => (
-          <ProductCard product={product} key={product.slug} />
+        {relatedProducts?.map((product: any) => (
+          <ProductCard product={product} key={product._id} />
         ))}
       </Carousel>
     </div>

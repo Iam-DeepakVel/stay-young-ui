@@ -9,12 +9,14 @@ import MenuMobile from "@/common/header/MenuMobile";
 import { StoreContext } from "@/store/store";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { CategoryDto } from "@/pages/admin/categories/[id]";
 
 const Header = () => {
   const [show, setShow] = useState("translate-y-0");
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [categories, setCategories] = useState<CategoryDto[] | null>(null);
 
   const { state } = useContext(StoreContext);
   const { cart } = state;
@@ -43,6 +45,18 @@ const Header = () => {
       window.removeEventListener("scroll", controlNavbar);
     };
   }, [lastScrollY]);
+
+  // Fetching Categories
+  useEffect(() => {
+    async function fetchCategories() {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
+      );
+      const categories = await res.json();
+      setCategories(categories);
+    }
+    fetchCategories();
+  }, []);
 
   return (
     <header
@@ -82,6 +96,7 @@ const Header = () => {
         <Menu
           showCategoryMenu={showCategoryMenu}
           setShowCategoryMenu={setShowCategoryMenu}
+          categories={categories}
         />
 
         {mobileMenu && (
@@ -89,6 +104,7 @@ const Header = () => {
             showCategoryMenu={showCategoryMenu}
             setShowCategoryMenu={setShowCategoryMenu}
             setMobileMenu={setMobileMenu}
+            categories={categories}
           />
         )}
 

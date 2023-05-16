@@ -1,7 +1,8 @@
+import { CategoryDto } from "@/pages/admin/categories/[id]";
 import { scrollToBottom } from "@/utils/utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
 export const navLinks = [
@@ -10,12 +11,7 @@ export const navLinks = [
     id: 2,
     name: "View Products",
     url: "/category",
-    subMenu: [
-      { id: 1, name: "Cleanser", url: "/category/cleanser" },
-      { id: 2, name: "Toner / mist", url: "/category/toner" },
-      { id: 3, name: "Serum / essence", url: "/category/serum" },
-      { id: 4, name: "Moisturizer", url: "/category/moisturizer" },
-    ],
+    subMenu: true,
   },
   { id: 3, name: "Contact" },
 ];
@@ -23,12 +19,13 @@ export const navLinks = [
 const Menu = ({
   showCategoryMenu,
   setShowCategoryMenu,
+  categories,
 }: {
   showCategoryMenu: Boolean;
   setShowCategoryMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  categories: CategoryDto[] | null;
 }) => {
   const { asPath } = useRouter();
-
   return (
     <ul className="hidden md:flex items-center gap-8 font-medium text-black">
       {navLinks.map((link) => (
@@ -43,21 +40,22 @@ const Menu = ({
             >
               {link.name}
               <BsChevronDown size={14} className="mt-1" />
+              {/* Categories dropdown */}
               {showCategoryMenu && (
                 <ul className="bg-white/95 absolute top-6 left-0 min-w-[250px]  text-black shadow-lg rounded-lg">
-                  {link.subMenu.map((subMenuItem) => (
+                  {categories?.map((category) => (
                     <Link
-                      key={subMenuItem.id}
-                      href={subMenuItem.url}
+                      key={category._id}
+                      href={`/category/${category.name.toLowerCase()}`}
                       onClick={() => setShowCategoryMenu(false)}
                     >
                       <li
                         className={`${
-                          asPath === subMenuItem.url &&
+                          asPath === category.name.toLowerCase() &&
                           "bg-[#28282B] text-white"
                         } h-12 flex items-center px-4 py-2 hover:bg-[#28282B] hover:text-white hover:scale-110 rounded-md`}
                       >
-                        {subMenuItem.name}
+                        {category.name}
                       </li>
                     </Link>
                   ))}

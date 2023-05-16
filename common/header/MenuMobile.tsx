@@ -4,15 +4,18 @@ import { BsChevronDown } from "react-icons/bs";
 import { navLinks } from "./Menu";
 import { scrollToBottom } from "@/utils/utils";
 import { motion } from "framer-motion";
+import { CategoryDto } from "@/pages/admin/categories/[id]";
 
 const MenuMobile = ({
   showCategoryMenu,
   setShowCategoryMenu,
   setMobileMenu,
+  categories,
 }: {
   showCategoryMenu: Boolean;
   setShowCategoryMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  categories: CategoryDto[] | null;
 }) => {
   return (
     <motion.ul
@@ -37,7 +40,7 @@ const MenuMobile = ({
                 {link.name}
                 <BsChevronDown size={14} className="mt-1" />
               </div>
-
+              
               {showCategoryMenu && (
                 <motion.ul
                   initial="hidden"
@@ -50,17 +53,17 @@ const MenuMobile = ({
                   }}
                   className="bg-black/[0.01] -mx-5 mt-4 -mb-4"
                 >
-                  {link.subMenu.map((subMenuItem) => (
+                  {categories?.map((category) => (
                     <Link
-                      key={subMenuItem.id}
-                      href={subMenuItem.url}
+                      key={category._id}
+                      href={`/category/${category.name.toLowerCase()}`}
                       onClick={() => {
                         setShowCategoryMenu(false);
                         setMobileMenu(false);
                       }}
                     >
                       <li className="py-4 px-8 border-t flex justify-between">
-                        {subMenuItem.name}
+                        {category.name}
                       </li>
                     </Link>
                   ))}

@@ -29,7 +29,7 @@ const CartItem = ({ item }: any) => {
         href={`/product/${item.slug}`}
         className=" shrink-0 aspect-square w-[50px] md:w-[120px]"
       >
-        <Image src={item.image[0]} alt={item.name} width={500} height={500} />
+        <Image src={item.images[0]} alt={item.name} width={500} height={500} />
       </Link>
 
       <div className=" w-full flex flex-col">

@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Cookies from "js-cookie";
+import Loading from "@/common/loading/Loading";
 
 const navigation = [
   { name: "Products", href: "/admin/products", icon: ShoppingBagIcon },
@@ -49,7 +50,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
   }, [user, loading]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const handleLogout = () => {

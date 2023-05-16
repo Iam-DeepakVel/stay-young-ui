@@ -5,7 +5,7 @@ const data = {
       subName: "Radiance Boosting Toner",
       slug: "radiance-boosting-toner",
       category: "Toner",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -20,7 +20,7 @@ const data = {
       subName: "Intense Moisture Serum",
       slug: "intense-moisture-serum",
       category: "Serum",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -36,7 +36,7 @@ const data = {
       subName: "Pore Clearing Oil",
       slug: "pore-clearing-oil",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -52,7 +52,7 @@ const data = {
       subName: "Hydrating Formula",
       slug: "gentle-cleansing-milk",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -68,7 +68,7 @@ const data = {
       subName: "Deep Clean Formula",
       slug: "foaming-face-wash",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -84,7 +84,7 @@ const data = {
       subName: "Purifying Formula",
       slug: "charcoal-cleanser",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -100,7 +100,7 @@ const data = {
       subName: "Makeup Remover",
       slug: "oil-cleanser",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -116,7 +116,7 @@ const data = {
       subName: "Deep Moisture Cream",
       slug: "deep-moisture-cream",
       category: "Moisturizer",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -132,7 +132,7 @@ const data = {
       subName: "24 Hour Moisture",
       slug: "ultra-hydrating-cream",
       category: "Moisturizer",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -148,7 +148,7 @@ const data = {
       subName: "Protective Day Cream",
       slug: "protective-day-cream",
       category: "Moisturizer",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -164,7 +164,7 @@ const data = {
       subName: "Lightweight Hydration",
       slug: "lightweight-gel-moisturizer",
       category: "Moisturizer",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -180,7 +180,7 @@ const data = {
       subName: "Revitalizing Overnight Moisturizer",
       slug: "revitalizing-overnight-moisturizer",
       category: "Moisturizer",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -196,7 +196,7 @@ const data = {
       subName: "Oil Control Cleanser",
       slug: "oil-control-cleanser",
       category: "Cleanser",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -212,7 +212,7 @@ const data = {
       subName: "Brightening and Firming Serum",
       slug: "vitamin-c-serum",
       category: "Serum",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -228,7 +228,7 @@ const data = {
       subName: "Hydrating Formula",
       slug: "rose-water-toner",
       category: "Toner",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -244,7 +244,7 @@ const data = {
       subName: "Plumping Formula",
       slug: "hyaluronic-acid-toner",
       category: "Toner",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -260,7 +260,7 @@ const data = {
       subName: "Exfoliating Formula",
       slug: "glycolic-acid-toner",
       category: "Toner",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -276,7 +276,7 @@ const data = {
       subName: "Anti-Aging Formula",
       slug: "retinol-serum",
       category: "Serum",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",
@@ -292,7 +292,7 @@ const data = {
       subName: "Clarifying Formula",
       slug: "niacinamide-serum",
       category: "Serum",
-      image: [
+      images: [
         "/assets/images/p1.jpg",
         "/assets/images/p2.jpg",
         "/assets/images/p3.jpg",

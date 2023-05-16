@@ -1,5 +1,6 @@
 import CategoryForm from "@/admin/containers/category/CategoryForm";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
+import Loading from "@/common/loading/Loading";
 import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 
@@ -36,6 +37,6 @@ export default function EditCategoryPage() {
       <CategoryForm categoryToEdit={category} />
     </AdminBaseLayout>
   ) : (
-    <div>Loading</div>
+    <Loading />
   );
 }

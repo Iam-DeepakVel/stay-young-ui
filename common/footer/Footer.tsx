@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 export const Footer = () => {
   return (
     <footer
-      aria-label="Site Footer"
       className="bg-[#0a0a0a] lg:grid lg:grid-cols-5"
     >
       <div className="relative block h-44 lg:col-span-2 lg:h-full">

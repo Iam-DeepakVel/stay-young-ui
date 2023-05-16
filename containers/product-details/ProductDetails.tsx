@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Wrapper from "@/layouts/Wrapper";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import RelatedProducts from "@/components/RelatedProducts";
@@ -27,7 +27,7 @@ function ProductDetailsCarousel({
         swipeable={true}
         className="productCarousel"
       >
-        {productImages.map((src) => (
+        {productImages?.map((src) => (
           <img src={src} alt={productName} key={src} />
         ))}
       </Carousel>
@@ -52,10 +52,26 @@ const ProductDetails = ({ product }: any) => {
     toast.success("Added to cart");
   };
 
-  // Getting products of a particular Category
-  const relatedProducts = data.products.filter(
-    (x) => x.category === product.category
-  );
+  const [relatedProducts, setRelatedProducts] = useState<any>();
+  useEffect(() => {
+    async function fetchProducts() {
+      if (product) {
+        const res = await fetch(
+          `${
+            process.env.NEXT_PUBLIC_STAY_YOUNG_API
+          }/product/category/${product.category[0].name.toLowerCase()}`
+        );
+        const relatedProducts = await res.json();
+
+        setRelatedProducts(
+          relatedProducts.filter((item: any) => item._id !== product._id)
+        );
+        console.log("RR", relatedProducts);
+      }
+    }
+    fetchProducts();
+  }, [product]);
+  console.log("Product", relatedProducts);
 
   return (
     <div className=" w-full md:py-20">
@@ -64,7 +80,7 @@ const ProductDetails = ({ product }: any) => {
           {/* Left Section - Product Details Carousel */}
           <div className=" w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
             <ProductDetailsCarousel
-              productImages={product?.image}
+              productImages={product?.images}
               productName={product?.name}
             />
           </div>
@@ -101,7 +117,7 @@ const ProductDetails = ({ product }: any) => {
               {`(Also includes all applicable duties)`}
             </div>
 
-            {product.countInStock === 0 && (
+            {product?.countInStock === 0 && (
               <div className="text-red-500 text-xl">Out of Stock</div>
             )}
 
@@ -118,8 +134,10 @@ const ProductDetails = ({ product }: any) => {
             </div>
           </div>
         </div>
-        {/* Related Products */}
-        <RelatedProducts relatedProducts={relatedProducts} />
+
+        {relatedProducts && (
+          <RelatedProducts relatedProducts={relatedProducts} />
+        )}
       </Wrapper>
     </div>
   );
