@@ -113,15 +113,15 @@ export default function AllCategories() {
                         <Image
                           src={category.image}
                           alt={category.name}
-                          width={100}
-                          height={100}
+                          width={80}
+                          height={80}
                           priority
                         />
                       </td>
                       <td className="relative flex items-center md:gap-6 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
                         <Link
                           href={`/admin/categories/${category._id}`}
-                          className="text-gray-700 hover:text-blue-500 pr-4 pt-10  transition-all duration-200 ease-in-out"
+                          className="text-gray-700 hover:text-blue-500 pr-4 mt-5  transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>
@@ -129,7 +129,7 @@ export default function AllCategories() {
                         <MdOutlineDelete
                           onClick={() => handleDelete(category._id)}
                           size={22.5}
-                          className="text-red-400 hover:text-gray-700 mt-10 cursor-pointer transition-all duration-200 ease-in-out"
+                          className="text-red-400 hover:text-gray-700 mt-5 cursor-pointer transition-all duration-200 ease-in-out"
                         />
                       </td>
                     </tr>

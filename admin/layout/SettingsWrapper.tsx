@@ -41,7 +41,7 @@ function SettingsWrapper({ children }: SettingsProps) {
         </div>
       </div>
       {/*Settings Components */}
-      <div className="flex-1 min-h-full p-4">{children}</div>
+      <div className="flex-1 min-h-full py-4 sm:p-4">{children}</div>
     </div>
   );
 }

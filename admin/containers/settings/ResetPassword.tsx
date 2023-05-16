@@ -69,7 +69,7 @@ const ResetPassword = () => {
       <div className="flex flex-col justify-center px-6 lg:px-8">
         <div className=" sm:w-full sm:max-w-sm">
           {error && <p className="text-md text-red-500 mb-4">{error}</p>}
-          <h2 className="mt-10 mb-6 text-left text-2xl font-bold leading-9 text-gray-900">
+          <h2 className="mt-10 mb-4 md:mb-6 text-left text-xl md:text-2xl font-bold leading-9 text-gray-900">
             Reset Password
           </h2>
         </div>
@@ -113,7 +113,7 @@ const ResetPassword = () => {
 
               <button
                 disabled={isSubmitting}
-                className="flex w-1/4  justify-center  bg-black px-3 py-1.5 text-sm rounded-md font-semibold leading-6 text-white shadow-sm hover:bg-transparent  hover:bg-gray-800 transition-all duration-150 ease-in-out"
+                className="flex  md:w-1/4  justify-center  bg-black px-3 py-1.5 text-sm rounded-md font-semibold leading-6 text-white shadow-sm hover:bg-transparent  hover:bg-gray-800 transition-all duration-150 ease-in-out"
               >
                 {isSubmitting ? "Changing..." : "Change"}
               </button>

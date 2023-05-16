@@ -11,28 +11,35 @@ import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { animateScroll as scroll } from "react-scroll";
 
-const productFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  subName: z.string().min(1, "Subname is required"),
-  category: z
-    .array(z.string())
-    .min(1, "At least one category must be selected"),
-  image1: z.string().min(1, "At least one image url must be entered").url(),
-  image2: z.string(),
-  image3: z.string(),
-  image4: z.string(),
-  image5: z.string(),
-  price: z
-    .number()
-    .positive("Price must be a positive number and cannot be zero."),
-  discountedPrice: z
-    .number()
-    .positive("Discounted price must be a positive number and cannot be zero"),
-  stockAvailable: z
-    .number()
-    .min(0, "Stock available must be a positive number or zero"),
-  description: z.string().min(1, "Description is required"),
-});
+const productFormSchema = z
+  .object({
+    name: z.string().min(1, "Name is required"),
+    subName: z.string().min(1, "Subname is required"),
+    category: z
+      .array(z.string())
+      .min(1, "At least one category must be selected"),
+    image1: z.string().min(1, "At least one image url must be entered").url(),
+    image2: z.string(),
+    image3: z.string(),
+    image4: z.string(),
+    image5: z.string(),
+    price: z
+      .number()
+      .positive("Price must be a positive number and cannot be zero."),
+    discountedPrice: z
+      .number()
+      .positive(
+        "Discounted price must be a positive number and cannot be zero"
+      ),
+    stockAvailable: z
+      .number()
+      .min(0, "Stock available must be a positive number or zero"),
+    description: z.string().min(1, "Description is required"),
+  })
+  .refine((data) => data.price >= data.discountedPrice, {
+    path: ["price"],
+    message: "Price must be greater than or equal to discounted price",
+  });
 
 type ProductFormSchemaType = z.infer<typeof productFormSchema>;
 
