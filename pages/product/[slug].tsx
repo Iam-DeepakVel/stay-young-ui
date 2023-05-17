@@ -17,17 +17,20 @@ const ProductDetailsPage = () => {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/slug/${slug}`
         );
-        const product = await res.json();
-        setProduct(product);
+        if (res.ok) {
+          const product = await res.json();
+          // Check if the data is valid JSON
+          if (product) {
+            setProduct(product);
+          }
+        }
         setLoading(false);
       }
     }
     fetchSingleProduct();
   }, [slug]);
 
-  console.log("PRODUCT", product);
-
-  return loading ? (
+  return loading && !product ? (
     <Loading />
   ) : (
     <BaseLayout title={slug ? slug.toString() : ""}>

@@ -6,7 +6,6 @@ import { Carousel } from "react-responsive-carousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { StoreContext } from "@/store/store";
 import { calculateDiscountPercentage } from "@/utils/utils";
-import data from "@/utils/data";
 import { toast } from "react-hot-toast";
 
 function ProductDetailsCarousel({
@@ -53,6 +52,7 @@ const ProductDetails = ({ product }: any) => {
   };
 
   const [relatedProducts, setRelatedProducts] = useState<any>();
+
   useEffect(() => {
     async function fetchProducts() {
       if (product) {
@@ -66,12 +66,10 @@ const ProductDetails = ({ product }: any) => {
         setRelatedProducts(
           relatedProducts.filter((item: any) => item._id !== product._id)
         );
-        console.log("RR", relatedProducts);
       }
     }
     fetchProducts();
   }, [product]);
-  console.log("Product", relatedProducts);
 
   return (
     <div className=" w-full md:py-20">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { animateScroll as scroll } from "react-scroll";
+import { HiOutlineEye } from "react-icons/hi";
+import Image from "next/image";
 
 const productFormSchema = z
   .object({
@@ -18,7 +20,7 @@ const productFormSchema = z
     category: z
       .array(z.string())
       .min(1, "At least one category must be selected"),
-    image1: z.string().min(1, "At least one image url must be entered").url(),
+    image1: z.string().min(1, "Image 1 url is required").url(),
     image2: z.string(),
     image3: z.string(),
     image4: z.string(),
@@ -45,8 +47,24 @@ type ProductFormSchemaType = z.infer<typeof productFormSchema>;
 
 export default function ProductForm({ productToEdit }: any) {
   const [categories, setCategories] = useState<any>();
+  const [image1Url, setImage1Url] = useState(productToEdit?.images[0]);
+  const [image2Url, setImage2Url] = useState(productToEdit?.images[1]);
+  const [image3Url, setImage3Url] = useState(productToEdit?.images[2]);
+  const [image4Url, setImage4Url] = useState(productToEdit?.images[3]);
+  const [image5Url, setImage5Url] = useState(productToEdit?.images[4]);
 
   const router = useRouter();
+
+  const handleImage1UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage1Url(event.target.value);
+  const handleImage2UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage2Url(event.target.value);
+  const handleImage3UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage3Url(event.target.value);
+  const handleImage4UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage4Url(event.target.value);
+  const handleImage5UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setImage5Url(event.target.value);
 
   const {
     register,
@@ -259,51 +277,131 @@ export default function ProductForm({ productToEdit }: any) {
                 name="image1"
                 type="text"
                 register={register}
+                onChange={handleImage1UrlChange}
                 placeholder="Enter Image 1"
                 className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image1}
               />
             </div>
+            {image1Url && (
+              <div className="sm:col-span-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <HiOutlineEye size={20} />
+                  <h2>Image 1 Preview</h2>
+                </div>
+                <Image
+                  src={image1Url}
+                  alt="banner preview"
+                  width={300}
+                  height={300}
+                  priority
+                />
+              </div>
+            )}
             <div className="mt-2">
               <InputField
                 name="image2"
                 type="text"
                 register={register}
+                onChange={handleImage2UrlChange}
                 placeholder="Enter Image 2"
                 className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image2}
               />
             </div>
+            {image2Url && (
+              <div className="sm:col-span-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <HiOutlineEye size={20} />
+                  <h2>Image 2 Preview</h2>
+                </div>
+                <Image
+                  src={image2Url}
+                  alt="banner preview"
+                  width={300}
+                  height={300}
+                  priority
+                />
+              </div>
+            )}
             <div className="mt-2">
               <InputField
                 name="image3"
                 type="text"
                 register={register}
+                onChange={handleImage3UrlChange}
                 placeholder="Enter Image 3"
                 className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image3}
               />
             </div>
+            {image3Url && (
+              <div className="sm:col-span-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <HiOutlineEye size={20} />
+                  <h2>Image 3 Preview</h2>
+                </div>
+                <Image
+                  src={image3Url}
+                  alt="banner preview"
+                  width={300}
+                  height={300}
+                  priority
+                />
+              </div>
+            )}
             <div className="mt-2">
               <InputField
                 name="image4"
                 type="text"
                 register={register}
+                onChange={handleImage4UrlChange}
                 placeholder="Enter Image 4"
                 className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image4}
               />
             </div>
+            {image4Url && (
+              <div className="sm:col-span-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <HiOutlineEye size={20} />
+                  <h2>Image 4 Preview</h2>
+                </div>
+                <Image
+                  src={image4Url}
+                  alt="banner preview"
+                  width={300}
+                  height={300}
+                  priority
+                />
+              </div>
+            )}
             <div className="mt-2">
               <InputField
                 name="image5"
                 type="text"
                 register={register}
+                onChange={handleImage5UrlChange}
                 placeholder="Enter Image 5"
                 className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image5}
               />
             </div>
+            {image5Url && (
+              <div className="sm:col-span-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <HiOutlineEye size={20} />
+                  <h2>Image 5 Preview</h2>
+                </div>
+                <Image
+                  src={image5Url}
+                  alt="banner preview"
+                  width={300}
+                  height={300}
+                  priority
+                />
+              </div>
+            )}
           </div>
 
           <div className="sm:col-span-2 sm:col-start-1">

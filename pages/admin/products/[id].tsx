@@ -25,7 +25,6 @@ export default function EditProductPage() {
       fetchProductToEdit();
     }
   }, [id]);
-  console.log("PRODUCT", product);
 
   return !isLoading && product ? (
     <AdminBaseLayout title="Edit Product">

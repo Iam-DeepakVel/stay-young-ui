@@ -1,6 +1,6 @@
 import InputField from "@/admin/widgets/form-input/input-field";
 import Link from "next/link";
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types";
@@ -9,6 +9,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { animateScroll as scroll } from "react-scroll";
+import Image from "next/image";
+import { HiOutlineEye } from "react-icons/hi";
 
 const categoryFormSchema = z.object({
   name: z.string().min(1, "Category Name is required"),
@@ -18,7 +20,12 @@ const categoryFormSchema = z.object({
 type CategoryFormSchemaType = z.infer<typeof categoryFormSchema>;
 
 const CategoryForm = ({ categoryToEdit }: any) => {
+  const [imageUrl, setImageUrl] = useState(categoryToEdit?.image);
+
   const router = useRouter();
+  const handleImageUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setImageUrl(event.target.value);
+  };
 
   const {
     register,
@@ -123,12 +130,28 @@ const CategoryForm = ({ categoryToEdit }: any) => {
                 label="Image Url"
                 type="text"
                 register={register}
+                onChange={handleImageUrlChange}
                 placeholder="Enter Image Url"
                 className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                 error={errors.image}
               />
             </div>
           </div>
+          {imageUrl && (
+            <div className="sm:col-span-full">
+              <div className="flex items-center gap-2 mb-2">
+                <HiOutlineEye size={20} />
+                <h2>Image Preview</h2>
+              </div>
+              <Image
+                src={imageUrl}
+                alt="banner preview"
+                width={200}
+                height={200}
+                priority
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6">

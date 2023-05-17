@@ -5,35 +5,13 @@ import Image from "next/image";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { BannerDto } from "@/pages";
 
-const carousels = [
-  {
-    src: "/assets/images/carousel-2.jpg",
-    tag: "Best Products",
-    headline: "Stay Young's best collections in India",
-    hashtags: "#skin care #stayyoung #korean",
-  },
-  {
-    src: "/assets/images/carousel-1.jpg",
-    tag: "Worth for price",
-    headline: "Firm and smooth with 3 drops",
-    hashtags: "#skin care #stayyoung #korean",
-  },
-  {
-    src: "/assets/images/carousel-3.jpg",
-    tag: "Smooth",
-    headline: "Soothes and soothes irritated skin",
-    hashtags: "#blue cream #soothing cream",
-  },
-  {
-    src: "/assets/images/carousel-4.jpg",
-    tag: "Best Seller",
-    headline: "Best Selling product in 2023",
-    hashtags: "#lotion #affordable",
-  },
-];
+interface HeroBannerProps {
+  banners: BannerDto[];
+}
 
-const HeroBanner = () => {
+const HeroBanner = ({ banners }: HeroBannerProps) => {
   return (
     <div className="relative text-white text-[20px] w-full max-w-[1920px]  mx-auto">
       <Carousel
@@ -61,16 +39,16 @@ const HeroBanner = () => {
           </div>
         )}
       >
-        {carousels.map((carousel) => (
-          <div key={carousel.tag}>
+        {banners?.map((banner) => (
+          <div key={banner._id}>
             {/*Image  */}
             <Image
               width={5000}
               height={5000}
               priority
-              src={carousel.src}
+              src={banner.image}
               className="aspect-[16/10] h-[400px] md:h-[600px] md:aspect-auto object-cover"
-              alt={carousel.tag}
+              alt={banner.title}
             />
             {/* Image Content */}
             <div className="absolute left-4 md:left-20 top-0 w-1/2 md:w-full text-start flex flex-col mt-10 md:mt-0 sm:justify-center h-full gap-6">
@@ -86,7 +64,7 @@ const HeroBanner = () => {
                   }}
                   className=" text-black text-sm md:text-lg"
                 >
-                  {carousel.tag}
+                  {banner.subTitle}
                 </motion.div>
                 <motion.p
                   initial="hidden"
@@ -99,9 +77,9 @@ const HeroBanner = () => {
                   }}
                   className="text-black text-lg md:text-4xl font-extrabold"
                 >
-                  {carousel.headline}
+                  {banner.title}
                 </motion.p>
-                <motion.p
+                <motion.div
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.5 }}
@@ -110,10 +88,12 @@ const HeroBanner = () => {
                     hidden: { opacity: 0, x: +120 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  className="text-gray-700 text-sm"
+                  className="text-gray-700 text-sm flex items-center gap-2"
                 >
-                  {carousel.hashtags}{" "}
-                </motion.p>
+                  {banner.tags.map((tag) => (
+                    <p key={tag}>{`#${tag}`}</p>
+                  ))}{" "}
+                </motion.div>
               </div>
               <motion.div
                 initial="hidden"
@@ -126,7 +106,7 @@ const HeroBanner = () => {
                 }}
               >
                 <Link
-                  href="/"
+                  href={banner.link}
                   className="relative w-32 pl-3 py-2 md:w-44 md:px-6 md:py-3 inline-flex items-center  overflow-hidden text-lg font-medium text-black border-2 border-black  hover:text-white group hover:bg-gray-50"
                 >
                   <span className="absolute left-0 block w-full h-0 transition-all bg-black opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>

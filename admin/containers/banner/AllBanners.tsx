@@ -1,32 +1,36 @@
-import { CategoryDto } from "@/pages/admin/categories/[id]";
+import { BannerDto } from "@/pages";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 
-export default function AllCategories() {
-  const [categories, setCategories] = useState<CategoryDto[] | null>(null);
+export default function AllBanners() {
+  const [banners, setBanners] = useState<BannerDto[] | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
   useEffect(() => {
-    async function fetchCategories() {
+    async function fetchBanners() {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`
       );
-      const categories = await res.json();
-      setCategories(categories);
+      const banners = await res.json();
+      setBanners(banners);
       setLoading(false);
     }
-    fetchCategories();
+    fetchBanners();
   }, []);
 
-  const handleDelete = async (categoryId: string) => {
-    const categoryDeleteToast = toast.loading("Deleting Category...");
+  const handleDelete = async (bannerId: string) => {
+    const bannerDeleteToast = toast.loading("Deleting Banner...");
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category/${categoryId}`,
+      `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner/${bannerId}`,
       {
         method: "DELETE",
         headers: {
@@ -36,19 +40,20 @@ export default function AllCategories() {
       }
     );
     if (response.ok) {
-      if (categories) {
-        const updatedCategories: any = categories.filter(
-          (category: CategoryDto) => category._id !== categoryId
+      if (banners) {
+        const updatedBanners: any = banners.filter(
+          (banner: BannerDto) => banner._id !== bannerId
         );
-        setCategories(updatedCategories);
+        setBanners(updatedBanners);
       }
-      toast.success("Category deleted Successfully", {
-        id: categoryDeleteToast,
+      toast.success("Banner deleted Successfully", {
+        id: bannerDeleteToast,
       });
+      router.reload();
     } else {
       const errorData = await response.json();
       toast.error(errorData.message, {
-        id: categoryDeleteToast,
+        id: bannerDeleteToast,
       });
     }
   };
@@ -58,19 +63,19 @@ export default function AllCategories() {
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900">
-            Categories
+            Banners
           </h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the categories in stay young including their name and
-            image.
+            A list of all the banners in stay young including their title, sub
+            title, tags, image etc...
           </p>
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
-            href="/admin/categories/add"
+            href="/admin/banners/add"
             className="block rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-black hover:bg-transparent hover:text-black "
           >
-            Add Category
+            Add Banner
           </Link>
         </div>
       </div>
@@ -84,7 +89,19 @@ export default function AllCategories() {
                     scope="col"
                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
                   >
-                    Name
+                    Position
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                  >
+                    Title
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3"
+                  >
+                    subTitle
                   </th>
                   <th
                     scope="col"
@@ -102,32 +119,39 @@ export default function AllCategories() {
               </thead>
               <tbody className="bg-white divide-y">
                 {loading ? (
-                  <p className="mt-6">🚀Loading Categories...Please wait </p>
+                  <p className="mt-6">🚀Loading Banners...Please wait </p>
                 ) : (
-                  categories?.map((category: any) => (
-                    <tr key={category._id}>
+                  banners?.map((banner: BannerDto) => (
+                    <tr key={banner._id}>
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                        {category.name}
+                        {banner.order}
+                      </td>
+                      <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                        {banner.title}
+                      </td>
+                      <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+                        {banner.subTitle}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <Image
-                          src={category.image}
-                          alt={category.name}
-                          width={80}
-                          height={80}
+                          src={banner.image}
+                          alt={banner.title}
+                          width={200}
+                          height={200}
                           priority
+                          className="w-44"
                         />
                       </td>
                       <td className="relative flex items-center md:gap-6 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
                         <Link
-                          href={`/admin/categories/${category._id}`}
+                          href={`/admin/banners/${banner._id}`}
                           className="text-gray-700 hover:text-blue-500 pr-4 mt-5  transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>
 
                         <MdOutlineDelete
-                          onClick={() => handleDelete(category._id)}
+                          onClick={() => handleDelete(banner._id)}
                           size={22.5}
                           className="text-red-400 hover:text-gray-700 mt-5 cursor-pointer transition-all duration-200 ease-in-out"
                         />
