@@ -124,7 +124,7 @@ export default function AllBanners() {
                   banners?.map((banner: BannerDto) => (
                     <tr key={banner._id}>
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                        {banner.order}
+                        {banner.displayIndex}
                       </td>
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                         {banner.title}

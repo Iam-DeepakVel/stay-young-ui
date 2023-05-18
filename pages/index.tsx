@@ -8,7 +8,7 @@ export interface BannerDto {
   tags: string[];
   image: string;
   link: string;
-  order: number;
+  displayIndex: number;
 }
 
 interface HomePageProps {

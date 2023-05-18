@@ -51,7 +51,7 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
               alt={banner.title}
             />
             {/* Image Content */}
-            <div className="absolute left-4 md:left-20 top-0 w-1/2 md:w-full text-start flex flex-col mt-10 md:mt-0 sm:justify-center h-full gap-6">
+            <div className="absolute left-4 md:left-20 top-0 w-[60%] md:w-full text-start flex flex-col mt-14 md:mt-0 sm:justify-center h-full gap-6">
               <div className="flex flex-col justify-center gap-3 md:gap-5">
                 <motion.div
                   initial="hidden"

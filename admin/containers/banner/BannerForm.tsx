@@ -20,7 +20,7 @@ const bannerFormSchema = z.object({
   tag3: z.string(),
   image: z.string().url().min(1, "Image is required"),
   link: z.string().url().min(1, "Link is required"),
-  order: z.number().int().min(1, "Order is required"),
+  displayIndex: z.number().int().min(1, "Order is required"),
 });
 
 type BannerFormSchemaType = z.infer<typeof bannerFormSchema>;
@@ -49,7 +49,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
       tag3: bannerToEdit?.tags[2] || "",
       image: bannerToEdit?.image || "",
       link: bannerToEdit?.link || "",
-      order: bannerToEdit?.order || "",
+      displayIndex: bannerToEdit?.displayIndex || "",
     },
   });
 
@@ -149,7 +149,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               Choose Position
             </label>
             <select
-              {...register("order", {
+              {...register("displayIndex", {
                 setValueAs: (v) => (v === "" ? undefined : parseInt(v, 10)),
               })}
               className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -163,9 +163,9 @@ const BannerForm = ({ bannerToEdit }: any) => {
               <option value="4">Fourth</option>
               <option value="5">Fifth</option>
             </select>
-            {errors.order && (
+            {errors.displayIndex && (
               <span className="form-error-text mt-1">
-                {errors.order.message}
+                {errors.displayIndex.message}
               </span>
             )}
           </div>
