@@ -20,7 +20,7 @@ const bannerFormSchema = z.object({
   tag3: z.string(),
   image: z.string().url().min(1, "Image is required"),
   link: z.string().url().min(1, "Link is required"),
-  displayIndex: z.number().int().min(1, "Order is required"),
+  displayIndex: z.number().int().min(1, "Position is required"),
 });
 
 type BannerFormSchemaType = z.infer<typeof bannerFormSchema>;
@@ -143,7 +143,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-2">
             <label
-              htmlFor="order"
+              htmlFor="displayIndex"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
               Choose Position

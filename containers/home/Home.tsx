@@ -10,10 +10,9 @@ interface HomeProps {
 }
 
 const Home = ({ banners }: HomeProps) => {
-  const sortedBanners = banners.sort((a, b) => a.order - b.order);
   return (
     <>
-      <HeroBanner banners={sortedBanners} />
+      <HeroBanner banners={banners} />
       <AllCategories />
       <ShowCaseProducts />
       <Coupon />
