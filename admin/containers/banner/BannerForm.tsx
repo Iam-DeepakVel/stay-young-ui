@@ -116,6 +116,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
             duration: 500,
             smooth: "easeInOutQuart",
           });
+          setImageUrl("");
         } else {
           const errorData = await response.json();
           toast.error(errorData.message, {

@@ -175,6 +175,11 @@ export default function ProductForm({ productToEdit }: any) {
             duration: 500,
             smooth: "easeInOutQuart",
           });
+          setImage1Url("");
+          setImage2Url("");
+          setImage3Url("");
+          setImage4Url("");
+          setImage5Url("");
         } else {
           const errorData = await response.json();
           toast.error(errorData.message, {

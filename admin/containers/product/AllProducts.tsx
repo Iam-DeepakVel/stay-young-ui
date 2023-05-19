@@ -32,7 +32,7 @@ export default function AllProducts() {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/search?q=${e.target.value}`
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/search?name=${e.target.value}`
       );
       const products = await response.json();
       setProducts(products);
