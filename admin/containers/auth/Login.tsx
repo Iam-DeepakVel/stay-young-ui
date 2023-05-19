@@ -106,7 +106,7 @@ const Login = () => {
           <div>
             <button
               disabled={isSubmitting}
-              className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-transparent hover:text-black hover:border hover:border-black "
+              className="flex w-full justify-center cursor-pointer rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-transparent hover:text-black hover:border hover:border-black "
             >
               Sign in
             </button>

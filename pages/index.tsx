@@ -13,21 +13,25 @@ export interface BannerDto {
 
 interface HomePageProps {
   banners: BannerDto[];
+  bestSellers: any;
 }
 
-export default function HomePage({ banners }: HomePageProps) {
+export default function HomePage({ banners, bestSellers }: HomePageProps) {
   return (
     <BaseLayout title="Home">
-      <Home banners={banners} />
+      <Home banners={banners} bestSellers={bestSellers} />
     </BaseLayout>
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`);
+  const resBestSellers = await fetch(
+    `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/best-sellers`
+  );
   const banners = await res.json();
+  const bestSellers = await resBestSellers.json();
   return {
-    props: { banners },
-    revalidate: 10,
+    props: { banners, bestSellers },
   };
 }

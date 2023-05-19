@@ -7,14 +7,15 @@ import React from "react";
 
 interface HomeProps {
   banners: BannerDto[];
+  bestSellers: any;
 }
 
-const Home = ({ banners }: HomeProps) => {
+const Home = ({ banners, bestSellers }: HomeProps) => {
   return (
     <>
       <HeroBanner banners={banners} />
       <AllCategories />
-      <ShowCaseProducts />
+      <ShowCaseProducts bestSellers={bestSellers} />
       <Coupon />
     </>
   );

@@ -4,7 +4,7 @@ import React from "react";
 import data from "@/utils/data";
 import { getHighestDiscountProducts } from "@/utils/utils";
 
-const ShowCaseProducts = () => {
+const ShowCaseProducts = ({ bestSellers }: any) => {
   const highestDiscountProducts = getHighestDiscountProducts(data.products);
   return (
     <Wrapper>
@@ -20,11 +20,10 @@ const ShowCaseProducts = () => {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 my-14  md:px-0 place-items-center">
-        {highestDiscountProducts.map((product: any) => (
+        {bestSellers?.products.map((product: any) => (
           <ProductCard
             product={product}
             key={product.slug}
-            productsLength={highestDiscountProducts.length}
             showBestSellerTag={true}
           />
         ))}

@@ -30,13 +30,11 @@ const navigation = [
 
 const personalization = [
   {
-    id: 1,
     name: "Banners",
     href: "/admin/banners",
     initial: "B",
   },
   {
-    id: 2,
     name: "Best Sellers",
     href: "/admin/best-sellers",
     initial: "BS",
@@ -205,7 +203,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                           </li>
                           <li>
                             <div className="text-xs font-semibold leading-6 text-gray-400">
-                              Your teams
+                              Personalization
                             </div>
                             <ul role="list" className="-mx-2 mt-2 space-y-1">
                               {personalization.map((item) => (
@@ -214,17 +212,17 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                                     href={item.href}
                                     className={classNames(
                                       router.pathname.includes(item.href)
-                                        ? "bg-gray-50 text-violet-600"
-                                        : "text-gray-700 hover:text-violet-600 hover:bg-gray-50",
+                                        ? "bg-black text-white"
+                                        : "text-gray-700 hover:text-white hover:bg-black",
                                       "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                     )}
                                   >
                                     <span
                                       className={classNames(
                                         router.pathname.includes(item.href)
-                                          ? "text-violet-600 border-violet-600"
-                                          : "text-gray-400 border-gray-200 group-hover:border-violet-600 group-hover:text-violet-600",
-                                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white"
+                                          ? "text-white border-white"
+                                          : "text-gray-700 border-black group-hover:border-white group-hover:text-white",
+                                        "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium"
                                       )}
                                     >
                                       {item.initial}

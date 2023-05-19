@@ -1,9 +1,10 @@
+import BestSellers from "@/admin/containers/best-sellers/BestSellers";
 import AdminBaseLayout from "@/admin/layout/AdminBaseLayout";
 
 const BestSellersPage = () => {
   return (
     <AdminBaseLayout title="BestSellers">
-      Comming soon. Stay Tuned!
+      <BestSellers />
     </AdminBaseLayout>
   );
 };
