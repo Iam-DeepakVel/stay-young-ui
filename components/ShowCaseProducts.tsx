@@ -1,11 +1,8 @@
 import Wrapper from "@/layouts/Wrapper";
 import ProductCard from "@/components/ProductCard";
 import React from "react";
-import data from "@/utils/data";
-import { getHighestDiscountProducts } from "@/utils/utils";
 
 const ShowCaseProducts = ({ bestSellers }: any) => {
-  const highestDiscountProducts = getHighestDiscountProducts(data.products);
   return (
     <Wrapper>
       <div className="max-w-7xl text-center my-[50px] md:my-[80px]">

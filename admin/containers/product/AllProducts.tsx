@@ -24,7 +24,7 @@ export default function AllProducts() {
       }
     }
     fetchProducts();
-  }, []);
+  }, [searchQuery]);
 
   // Search Products
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -249,10 +249,10 @@ export default function AllProducts() {
                           Add
                         </p>
                       </td>
-                      <td className="relative flex md:gap-6  whitespace-nowrap pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
+                      <td className="relative flex items-center justify-center  mt-8 md:gap-6  whitespace-nowrap pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
                         <Link
                           href={`/admin/products/${product._id}`}
-                          className="text-gray-700 hover:text-blue-500 pr-4 pt-10 transition-all duration-200 ease-in-out"
+                          className="text-gray-700 hover:text-blue-500 pr-4  transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>
@@ -260,7 +260,7 @@ export default function AllProducts() {
                         <MdOutlineDelete
                           onClick={() => handleDelete(product._id)}
                           size={22.5}
-                          className="text-red-400 hover:text-gray-700 mt-10 cursor-pointer transition-all duration-200 ease-in-out"
+                          className="text-red-400 hover:text-gray-700  cursor-pointer transition-all duration-200 ease-in-out"
                         />
                       </td>
                     </tr>
