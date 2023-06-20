@@ -153,7 +153,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               {...register("displayIndex", {
                 setValueAs: (v) => (v === "" ? undefined : parseInt(v, 10)),
               })}
-              className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-stayPurple sm:text-sm sm:leading-6"
             >
               <option value="" selected disabled>
                 Choose Position
@@ -177,7 +177,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               label="Sub Title"
               register={register}
               placeholder="Enter Banner Sub Title"
-              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.subTitle}
             />
           </div>
@@ -189,7 +189,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               type="text"
               register={register}
               placeholder="Enter Title"
-              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.title}
             />
           </div>
@@ -203,7 +203,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
                 type="text"
                 register={register}
                 placeholder="Enter Tag 1"
-                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.tag1}
               />
             </div>
@@ -214,7 +214,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
                 type="text"
                 register={register}
                 placeholder="Enter Tag 2"
-                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.tag2}
               />
             </div>
@@ -225,7 +225,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
                 type="text"
                 register={register}
                 placeholder="Enter Tag 3"
-                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.tag3}
               />
             </div>
@@ -239,7 +239,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               type="text"
               register={register}
               placeholder="Enter Image Url"
-              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.image}
             />
           </div>
@@ -267,7 +267,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
               type="text"
               register={register}
               placeholder="Enter Redirect link"
-              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.link}
             />
           </div>
@@ -276,14 +276,14 @@ const BannerForm = ({ bannerToEdit }: any) => {
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
           href="/admin/banners"
-          className="text-sm flex items-center justify-center font-semibold leading-6 text-gray-900 border border-black rounded-lg w-24 h-12 hover:bg-black hover:text-white transition-all duration-200 ease-in-out"
+          className="text-sm flex items-center justify-center font-semibold leading-6 text-stayPurple border border-stayPurple rounded-lg w-24 h-12 hover:bg-stayPurple hover:text-white transition-all duration-200 ease-in-out"
         >
           Cancel
         </Link>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-sm font-semibold leading-6  bg-black text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-black hover:border hover:border-black transition-all duration-200 ease-in-out"
+          className="text-sm font-semibold leading-6  bg-stayPurple text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-stayPurple hover:border hover:border-stayPurple transition-all duration-200 ease-in-out"
         >
           {isSubmitting
             ? bannerToEdit

@@ -180,8 +180,8 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                                     className={`
                                       ${
                                         router.pathname.includes(item.href)
-                                          ? "bg-black text-white"
-                                          : "text-gray-700 hover:text-white hover:bg-black"
+                                          ? "bg-stayPurple text-white"
+                                          : "text-gray-700 hover:text-white hover:bg-stayPurple"
                                       }
                                        group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold
                                     `}
@@ -212,8 +212,8 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                                     href={item.href}
                                     className={classNames(
                                       router.pathname.includes(item.href)
-                                        ? "bg-black text-white"
-                                        : "text-gray-700 hover:text-white hover:bg-black",
+                                        ? "bg-stayPurple text-white"
+                                        : "text-gray-700 hover:text-white hover:bg-stayPurple",
                                       "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                     )}
                                   >
@@ -238,7 +238,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                           <li className="mt-auto">
                             <button
                               onClick={handleLogout}
-                              className="group cursor-pointer w-full -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-black hover:text-white"
+                              className="group cursor-pointer w-full -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-stayPurple hover:text-white"
                             >
                               <ArrowLeftOnRectangleIcon
                                 className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-white"
@@ -299,8 +299,8 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                             href={item.href}
                             className={classNames(
                               router.pathname.includes(item.href)
-                                ? "bg-black text-white"
-                                : "text-gray-700 hover:text-white hover:bg-black",
+                                ? "bg-stayPurple text-white"
+                                : "text-gray-700 hover:text-white hover:bg-stayPurple",
                               "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             )}
                           >
@@ -330,8 +330,8 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                             href={item.href}
                             className={classNames(
                               router.pathname.includes(item.href)
-                                ? "bg-black text-white"
-                                : "text-gray-700 hover:text-white hover:bg-black",
+                                ? "bg-stayPurple text-white"
+                                : "text-gray-700 hover:text-white hover:bg-stayPurple",
                               "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             )}
                           >
@@ -354,7 +354,7 @@ export default function AdminBaseLayout({ children, title }: BaseLayoutProps) {
                   <li className="mt-auto">
                     <button
                       onClick={handleLogout}
-                      className="group cursor-pointer w-full -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-black hover:text-white"
+                      className="group cursor-pointer w-full -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-stayPurple hover:text-white"
                     >
                       <ArrowLeftOnRectangleIcon
                         className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-white"

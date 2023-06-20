@@ -113,7 +113,7 @@ export default function AllProducts() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
             href="/admin/products/add"
-            className="block rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-black hover:bg-transparent hover:text-black "
+            className="block rounded-md bg-stayPurple px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-stayPurple hover:bg-transparent hover:text-stayPurple "
           >
             Add Product
           </Link>
@@ -137,7 +137,7 @@ export default function AllProducts() {
         </div>
         <input
           type="text"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-stayPurple focus:border-stayPurple block w-full pl-10 p-2.5"
           placeholder="Search by Prouduct Name or Sub Name..."
           value={searchQuery}
           onChange={handleInputChange}
@@ -244,7 +244,7 @@ export default function AllProducts() {
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                         <p
                           onClick={() => handleAddToBestSeller(product._id)}
-                          className="bg-black flex items-center justify-center w-14 p-2 cursor-pointer text-white rounded-full active:scale-75 transition-all duration-200 ease-in-out"
+                          className="bg-stayPurple flex items-center justify-center w-14 p-2 cursor-pointer text-white rounded-full active:scale-75 transition-all duration-200 ease-in-out"
                         >
                           Add
                         </p>
@@ -252,7 +252,7 @@ export default function AllProducts() {
                       <td className="relative flex items-center justify-center  mt-8 md:gap-6  whitespace-nowrap pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
                         <Link
                           href={`/admin/products/${product._id}`}
-                          className="text-gray-700 hover:text-blue-500 pr-4  transition-all duration-200 ease-in-out"
+                          className="text-gray-700 hover:text-stayPurple pr-4 transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>

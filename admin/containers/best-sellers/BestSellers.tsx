@@ -72,7 +72,7 @@ export default function BestSellers() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
             href="/admin/products"
-            className="block rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-black hover:bg-transparent hover:text-black "
+            className="block rounded-md bg-stayPurple px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-stayPurple hover:bg-transparent hover:text-stayPurple "
           >
             Add Best Seller
           </Link>
@@ -150,7 +150,7 @@ export default function BestSellers() {
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                         <Link
                           href={`/admin/products/${product._id}`}
-                          className="text-gray-700 hover:text-blue-500 pr-4 pt-10 transition-all duration-200 ease-in-out"
+                          className="text-gray-700 hover:text-stayPurple pr-4 pt-10 transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>
@@ -160,7 +160,7 @@ export default function BestSellers() {
                           onClick={() =>
                             handleRemoveFromBestSeller(product._id)
                           }
-                          className="bg-black flex items-center justify-center  p-2 md:w-18 md:px-0 cursor-pointer text-white rounded-full active:scale-75 transition-all duration-200 ease-in-out"
+                          className="bg-stayPurple hover:bg-stayPurple flex items-center justify-center  p-2 md:w-18 md:px-0 cursor-pointer text-white rounded-full active:scale-75 transition-all duration-200 ease-in-out"
                         >
                           Remove
                         </p>

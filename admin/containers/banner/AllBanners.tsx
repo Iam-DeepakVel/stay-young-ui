@@ -73,7 +73,7 @@ export default function AllBanners() {
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <Link
             href="/admin/banners/add"
-            className="block rounded-md bg-black px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-black hover:bg-transparent hover:text-black "
+            className="block rounded-md bg-stayPurple px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:border hover:border-stayPurple hover:bg-transparent hover:text-stayPurple "
           >
             Add Banner
           </Link>
@@ -145,7 +145,7 @@ export default function AllBanners() {
                       <td className="relative flex items-center md:gap-6 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-3">
                         <Link
                           href={`/admin/banners/${banner._id}`}
-                          className="text-gray-700 hover:text-blue-500 pr-4 mt-5  transition-all duration-200 ease-in-out"
+                          className="text-gray-700 hover:text-stayPurple pr-4 mt-5  transition-all duration-200 ease-in-out"
                         >
                           <FaRegEdit size={20} />
                         </Link>

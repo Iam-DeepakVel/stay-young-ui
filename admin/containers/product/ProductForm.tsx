@@ -212,7 +212,7 @@ export default function ProductForm({ productToEdit }: any) {
               label="Name"
               register={register}
               placeholder="Enter Product Name"
-              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.name}
             />
           </div>
@@ -224,7 +224,7 @@ export default function ProductForm({ productToEdit }: any) {
               label="Subname"
               register={register}
               placeholder="Enter Product Subname"
-              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.subName}
             />
           </div>
@@ -236,7 +236,7 @@ export default function ProductForm({ productToEdit }: any) {
                 <div key={category._id} className="flex items-center mb-2">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 mr-3 rounded border-gray-300 text-black focus:ring-black"
+                    className="h-4 w-4 mr-3 rounded border-gray-300 text-stayPurple focus:ring-stayPurple"
                     value={category._id}
                     {...register("category")}
                     onChange={(e) => {
@@ -284,7 +284,7 @@ export default function ProductForm({ productToEdit }: any) {
                 register={register}
                 onChange={handleImage1UrlChange}
                 placeholder="Enter Image 1"
-                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image1}
               />
             </div>
@@ -310,7 +310,7 @@ export default function ProductForm({ productToEdit }: any) {
                 register={register}
                 onChange={handleImage2UrlChange}
                 placeholder="Enter Image 2"
-                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image2}
               />
             </div>
@@ -336,7 +336,7 @@ export default function ProductForm({ productToEdit }: any) {
                 register={register}
                 onChange={handleImage3UrlChange}
                 placeholder="Enter Image 3"
-                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image3}
               />
             </div>
@@ -362,7 +362,7 @@ export default function ProductForm({ productToEdit }: any) {
                 register={register}
                 onChange={handleImage4UrlChange}
                 placeholder="Enter Image 4"
-                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image4}
               />
             </div>
@@ -388,7 +388,7 @@ export default function ProductForm({ productToEdit }: any) {
                 register={register}
                 onChange={handleImage5UrlChange}
                 placeholder="Enter Image 5"
-                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image5}
               />
             </div>
@@ -416,7 +416,7 @@ export default function ProductForm({ productToEdit }: any) {
               label="Discounted Price"
               register={register}
               placeholder="Enter Discounted Price"
-              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.discountedPrice}
             />
           </div>
@@ -428,7 +428,7 @@ export default function ProductForm({ productToEdit }: any) {
               label="Price"
               register={register}
               placeholder="Enter Price"
-              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.price}
             />
           </div>
@@ -440,7 +440,7 @@ export default function ProductForm({ productToEdit }: any) {
               label="Stock Available"
               register={register}
               placeholder="Enter Stock Available"
-              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 py-1.5 placeholder:text-sm text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.stockAvailable}
             />
           </div>
@@ -454,7 +454,7 @@ export default function ProductForm({ productToEdit }: any) {
             <div className="mt-2">
               <textarea
                 rows={7}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 defaultValue={""}
                 {...register("description")}
               />
@@ -471,14 +471,14 @@ export default function ProductForm({ productToEdit }: any) {
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
           href="/admin/products"
-          className="text-sm flex items-center justify-center font-semibold leading-6 text-gray-900 border border-black rounded-lg w-24 h-12 hover:bg-black hover:text-white transition-all duration-200 ease-in-out"
+          className="text-sm flex items-center justify-center font-semibold leading-6 text-stayPurple border border-stayPurple rounded-lg w-24 h-12 hover:bg-stayPurple hover:text-white transition-all duration-200 ease-in-out"
         >
           Cancel
         </Link>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-sm font-semibold leading-6  bg-black text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-black hover:border hover:border-black transition-all duration-200 ease-in-out"
+          className="text-sm font-semibold leading-6  bg-stayPurple text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-stayPurple hover:border hover:border-stayPurple transition-all duration-200 ease-in-out"
         >
           {isSubmitting
             ? productToEdit

@@ -15,6 +15,9 @@ module.exports = {
         bruno: "Bruno Ace SC, sans-serif",
         gochiHand: "Gochi Hand, cursive",
       },
+      colors: {
+        stayPurple: "#ab6ec5",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

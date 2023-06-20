@@ -119,7 +119,7 @@ const CategoryForm = ({ categoryToEdit }: any) => {
               label="Name"
               register={register}
               placeholder="Enter Category Name"
-              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+              className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
               error={errors.name}
             />
           </div>
@@ -133,7 +133,7 @@ const CategoryForm = ({ categoryToEdit }: any) => {
                 register={register}
                 onChange={handleImageUrlChange}
                 placeholder="Enter Image Url"
-                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                className="block w-full flex-1 mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                 error={errors.image}
               />
             </div>
@@ -158,14 +158,14 @@ const CategoryForm = ({ categoryToEdit }: any) => {
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
           href="/admin/categories"
-          className="text-sm flex items-center justify-center font-semibold leading-6 text-gray-900 border border-black rounded-lg w-24 h-12 hover:bg-black hover:text-white transition-all duration-200 ease-in-out"
+          className="text-sm flex items-center justify-center font-semibold leading-6 text-stayPurple border border-stayPurple rounded-lg w-24 h-12 hover:bg-stayPurple hover:text-white transition-all duration-200 ease-in-out"
         >
           Cancel
         </Link>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-sm font-semibold leading-6  bg-black text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-black hover:border hover:border-black transition-all duration-200 ease-in-out"
+          className="text-sm font-semibold leading-6  bg-stayPurple text-white rounded-lg w-36 h-12  hover:bg-transparent hover:text-stayPurple hover:border hover:border-stayPurple transition-all duration-200 ease-in-out"
         >
           {isSubmitting
             ? categoryToEdit
