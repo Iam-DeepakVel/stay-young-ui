@@ -57,6 +57,7 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
           alt="product-image"
           width={500}
           height={500}
+          priority
         />
         <div className="py-4 md:p-4  text-black/[0.9]">
           <h2 className=" text-xs sm:text-sm md:text-lg font-medium">

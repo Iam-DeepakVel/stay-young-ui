@@ -8,9 +8,7 @@ import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
-    <footer
-      className="bg-[#0a0a0a] lg:grid lg:grid-cols-5"
-    >
+    <footer className="bg-[#0a0a0a] lg:grid lg:grid-cols-5">
       <div className="relative block h-44 lg:col-span-2 lg:h-full">
         <Image
           width={500}
@@ -18,6 +16,7 @@ export const Footer = () => {
           src="/assets/images/carousel-1.jpg"
           alt="stay-young-product"
           className="absolute inset-0 object-cover w-full h-full"
+          priority
         />
         <div className="absolute top-5 w-3/4 lg:top-12 left-8">
           <h2 className=" font-gochiHand text-2xl mb-4">Stay Young</h2>

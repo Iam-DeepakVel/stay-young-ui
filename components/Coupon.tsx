@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import { CouponDto } from "@/admin/containers/coupon/AllCoupons";
@@ -31,6 +31,7 @@ const Coupon = () => {
               src={coupon.image}
               alt={coupon.name}
               className="flex-shrink-0 mt-5 w-1/2"
+              priority
             />
           ))}
         </div>
@@ -53,6 +54,7 @@ const Coupon = () => {
               src={coupon.image}
               className="h-[150px]"
               alt={coupon.name}
+              priority
             />
           ))}
         </Carousel>
