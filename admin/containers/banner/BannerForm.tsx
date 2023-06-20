@@ -254,7 +254,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
                 src={imageUrl}
                 alt="banner preview"
                 width={2000}
-                height={200}
+                height={2000}
                 priority
               />
             </div>
@@ -275,7 +275,7 @@ const BannerForm = ({ bannerToEdit }: any) => {
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
-          href="/admin/categories"
+          href="/admin/banners"
           className="text-sm flex items-center justify-center font-semibold leading-6 text-gray-900 border border-black rounded-lg w-24 h-12 hover:bg-black hover:text-white transition-all duration-200 ease-in-out"
         >
           Cancel

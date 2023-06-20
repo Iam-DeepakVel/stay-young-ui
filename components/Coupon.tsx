@@ -5,22 +5,22 @@ import Image from "next/image";
 
 const coupons = [
   {
-    _id: "jfalsdlfasdf",
+    _id: "1",
     name: "50% discount coupon",
     image: "/assets/images/coupon-1.jpg",
   },
   {
-    _id: "sadfsfasf",
+    _id: "2",
     name: "100% discount coupon",
     image: "/assets/images/coupon-2.jpg",
   },
   {
-    _id: "sadfsfasasdfasdff",
+    _id: "3",
     name: "100% discount coupon",
     image: "/assets/images/coupon-2.jpg",
   },
   {
-    _id: "sadfsfasasdfasdff",
+    _id: "4",
     name: "100% discount coupon",
     image: "/assets/images/coupon-1.jpg",
   },
