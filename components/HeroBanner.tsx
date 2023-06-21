@@ -42,10 +42,7 @@ const HeroBanner = ({ banners }: HeroBannerProps) => {
         {banners?.map((banner) => (
           <div key={banner._id}>
             {/*Image  */}
-            <Image
-              width={5000}
-              height={5000}
-              priority
+            <img
               src={banner.image}
               className="aspect-[16/10] h-[400px] md:h-[600px] md:aspect-auto object-cover"
               alt={banner.title}

@@ -17,7 +17,7 @@ const ShowCaseProducts = ({ bestSellers }: any) => {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 my-14  md:px-0 place-items-center">
-        {bestSellers?.products.map((product: any) => (
+        {bestSellers?.products?.map((product: any) => (
           <ProductCard
             product={product}
             key={product.slug}

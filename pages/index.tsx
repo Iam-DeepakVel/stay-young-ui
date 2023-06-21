@@ -1,5 +1,6 @@
 import Home from "@/containers/home/Home";
 import BaseLayout from "@/layouts/BaseLayout";
+import { useEffect, useState } from "react";
 
 export interface BannerDto {
   _id: string;
@@ -11,27 +12,35 @@ export interface BannerDto {
   displayIndex: number;
 }
 
-interface HomePageProps {
-  banners: BannerDto[];
-  bestSellers: any;
-}
+export default function HomePage() {
+  const [banners, setBanners] = useState<BannerDto[]>([]);
+  const [bestSellers, setBestSellers] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
-export default function HomePage({ banners, bestSellers }: HomePageProps) {
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`
+      );
+      const resBestSellers = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/best-sellers`
+      );
+
+      setBanners(await res.json());
+      setBestSellers(await resBestSellers.json());
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <BaseLayout title="Home">
-      <Home banners={banners} bestSellers={bestSellers} />
-    </BaseLayout>
+    !loading &&
+    banners &&
+    bestSellers && (
+      <BaseLayout title="Home">
+        <Home banners={banners} bestSellers={bestSellers} />
+      </BaseLayout>
+    )
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`);
-  const resBestSellers = await fetch(
-    `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/best-sellers`
-  );
-  const banners = await res.json();
-  const bestSellers = await resBestSellers.json();
-  return {
-    props: { banners, bestSellers },
-  };
 }
