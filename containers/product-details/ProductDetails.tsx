@@ -16,7 +16,7 @@ function ProductDetailsCarousel({
   productName: string;
 }) {
   return (
-    <div className=" text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
+    <div className=" sticky top-[50px] mx-auto w-full max-w-[1360px] text-[20px] text-white">
       <Carousel
         infiniteLoop={true}
         showIndicators={false}
@@ -74,9 +74,9 @@ const ProductDetails = ({ product }: any) => {
   return (
     <div className=" w-full md:py-20">
       <Wrapper>
-        <div className=" flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
+        <div className=" flex flex-col gap-[50px] md:px-10 lg:flex-row lg:gap-[100px]">
           {/* Left Section - Product Details Carousel */}
-          <div className=" w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
+          <div className=" mx-auto w-full max-w-[500px] flex-[1.5] md:w-auto lg:mx-0 lg:max-w-full">
             <ProductDetailsCarousel
               productImages={product?.images}
               productName={product?.name}
@@ -86,48 +86,52 @@ const ProductDetails = ({ product }: any) => {
           {/* Right Section */}
           <div className=" flex-[1] py-3">
             {/* Product Title */}
-            <h2 className=" text-[34px] font-semibold mb-2">{product?.name}</h2>
+            <h2 className=" mb-2 text-[34px] font-semibold">{product?.name}</h2>
             {/* Product Subtitle */}
-            <div className="text-lg font-semibold mb-5">{product?.subName}</div>
+            <div className="mb-5 text-lg font-semibold">{product?.subName}</div>
             {/* Product Price */}
             <div className=" text-lg font-semibold">
               <div className=" flex items-center">
                 <p className=" mr-2 text-xl font-semibold">
                   Price: ₹{product?.discountedPrice}
                 </p>
-                <p className=" text-black/[0.5] text-sm font-medium line-through">
-                  ₹{product?.price}
-                </p>
-                <p className="ml-4 text-base font-medium text-green-500">
-                  {calculateDiscountPercentage(
-                    product?.price,
-                    product?.discountedPrice
-                  )}
-                  % off
-                </p>
+                {product?.price !== product?.discountedPrice && (
+                  <>
+                    <p className=" text-sm font-medium text-black/[0.5] line-through">
+                      ₹{product?.price}
+                    </p>
+                    <p className="ml-4 text-base font-medium text-green-500">
+                      {calculateDiscountPercentage(
+                        product?.price,
+                        product?.discountedPrice
+                      )}
+                      % off
+                    </p>
+                  </>
+                )}
               </div>
             </div>
             {/* taxes and duties*/}
             <div className=" text-md font-medium text-black/[0.5]">
               incl. of taxes
             </div>
-            <div className="text-md font-medium text-black/[0.5] mb-2">
+            <div className="text-md mb-2 font-medium text-black/[0.5]">
               {`(Also includes all applicable duties)`}
             </div>
 
             {product?.countInStock === 0 && (
-              <div className="text-red-500 text-xl">Out of Stock</div>
+              <div className="text-xl text-red-500">Out of Stock</div>
             )}
 
             {/*Add to Cart*/}
             <button
               onClick={AddToCartHandler}
-              className=" w-full py-4 mt-10 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-8 hover:opacity-75"
+              className=" mb-8 mt-10 w-full rounded-full bg-black py-4 text-lg font-medium text-white transition-transform hover:opacity-75 active:scale-95"
             >
               Add to Cart
             </button>
             <div>
-              <h1 className="text-[24px] mb-4 font-bold">Product Details</h1>
+              <h1 className="mb-4 text-[24px] font-bold">Product Details</h1>
               <p className=" text-md mb-5">{product?.description}</p>
             </div>
           </div>

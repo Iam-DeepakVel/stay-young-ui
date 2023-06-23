@@ -31,12 +31,12 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
     <div
       onMouseOver={() => setShowIcons(true)}
       onMouseLeave={() => setShowIcons(false)}
-      className="relative hover:scale-105 transform duration-200"
+      className="relative transform duration-200 hover:scale-105"
     >
       {showIcons && (
         <button
           onClick={AddToCartHandler}
-          className="hidden sm:block absolute bottom-20 right-2 md:bottom-28 md:right-4 bg-white/[0.7] rounded-full  space-y-4 p-2  text-black/[0.6] hover:text-black hover:scale-125  transform duration-200 cursor-pointer"
+          className="absolute bottom-20 right-2 hidden transform cursor-pointer space-y-4 rounded-full bg-white/[0.7]  p-2 text-black/[0.6]  duration-200 hover:scale-125 hover:text-black  sm:block md:bottom-28 md:right-4"
         >
           <BsCart2 size={25} />
         </button>
@@ -44,13 +44,13 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
 
       {/*Best Tag  */}
       {showBestSellerTag && (
-        <div className="bg-black w-24 h-7 md:w-28 md:h-10  flex flex-col items-center justify-center absolute top-0 left-0">
-          <h2 className=" text-white text-sm md:text-md">Best Seller</h2>
+        <div className="absolute left-0 top-0 flex h-7  w-24 flex-col items-center justify-center bg-black md:h-10 md:w-28">
+          <h2 className=" md:text-md text-sm text-white">Best Seller</h2>
         </div>
       )}
       <Link
         href={`/product/${product?.slug}`}
-        className=" overflow-hidden cursor-pointer"
+        className=" cursor-pointer overflow-hidden"
       >
         <Image
           src={product?.images[0]}
@@ -59,24 +59,28 @@ const ProductCard = ({ product, showBestSellerTag }: any) => {
           height={500}
           priority
         />
-        <div className="py-4 md:p-4  text-black/[0.9]">
-          <h2 className=" text-xs sm:text-sm md:text-lg font-medium">
+        <div className="py-4 text-black/[0.9]  md:p-4">
+          <h2 className=" text-xs font-medium sm:text-sm md:text-lg">
             {product.name}
           </h2>
           <div className=" flex items-center text-black/[0.5]">
-            <p className=" mr-2 text-sm md:text-lg font-semibold">
+            <p className=" mr-2 text-sm font-semibold md:text-lg">
               ₹{product?.discountedPrice}
             </p>
-            <p className=" text-xs md:text-base font-medium line-through">
-              ₹{product?.price}
-            </p>
-            <p className=" ml-auto text-xs md:text-base font-medium text-green-500">
-              {calculateDiscountPercentage(
-                product?.price,
-                product?.discountedPrice
-              )}
-              % off
-            </p>
+            {product?.price !== product?.discountedPrice && (
+              <>
+                <p className=" text-xs font-medium line-through md:text-base">
+                  ₹{product?.price}
+                </p>
+                <p className=" ml-auto text-xs font-medium text-green-500 md:text-base">
+                  {calculateDiscountPercentage(
+                    product?.price,
+                    product?.discountedPrice
+                  )}
+                  % off
+                </p>
+              </>
+            )}
           </div>
         </div>
       </Link>
