@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 import { animateScroll as scroll } from "react-scroll";
 import { HiOutlineEye } from "react-icons/hi";
 import Image from "next/image";
+import { DETAIL_TAGS } from "@/containers/product-details/ProductDetails";
 
 const productFormSchema = z
   .object({
@@ -20,6 +21,7 @@ const productFormSchema = z
     category: z
       .array(z.string())
       .min(1, "At least one category must be selected"),
+    detailTags: z.array(z.string()),
     image1: z.string().min(1, "Image 1 url is required").url(),
     image2: z.string(),
     image3: z.string(),
@@ -44,6 +46,25 @@ const productFormSchema = z
   });
 
 type ProductFormSchemaType = z.infer<typeof productFormSchema>;
+
+const detailTags = [
+  {
+    name: "Cruelty Free",
+    value: DETAIL_TAGS.CRUELTY_FREE,
+  },
+  {
+    name: "PH Range",
+    value: DETAIL_TAGS.PH_RANGE,
+  },
+  {
+    name: "Plus Three",
+    value: DETAIL_TAGS.PLUS_THREE,
+  },
+  {
+    name: "Vegan Friendly",
+    value: DETAIL_TAGS.VEGAN_FRIENDLY,
+  },
+];
 
 export default function ProductForm({ productToEdit }: any) {
   const [categories, setCategories] = useState<any>();
@@ -79,6 +100,7 @@ export default function ProductForm({ productToEdit }: any) {
       name: productToEdit?.name || "",
       subName: productToEdit?.subName || "",
       category: productToEdit?.category || [],
+      detailTags: productToEdit?.detailTags || [],
       image1: productToEdit?.images[0] || "",
       image2: productToEdit?.images[1] || "",
       image3: productToEdit?.images[2] || "",
@@ -205,6 +227,7 @@ export default function ProductForm({ productToEdit }: any) {
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          {/* Name */}
           <div className="sm:col-span-2">
             <InputField
               name="name"
@@ -217,6 +240,7 @@ export default function ProductForm({ productToEdit }: any) {
             />
           </div>
 
+          {/* Subname */}
           <div className=" sm:col-span-2">
             <InputField
               name="subName"
@@ -229,6 +253,7 @@ export default function ProductForm({ productToEdit }: any) {
             />
           </div>
 
+          {/* Category */}
           <div className="sm:col-span-full overflow-auto scroll-smooth">
             <h2 className="form-label mb-3">Select Category</h2>
             <div className="flex gap-6">
@@ -270,6 +295,46 @@ export default function ProductForm({ productToEdit }: any) {
             )}
           </div>
 
+          {/* Detail Tags */}
+          <div className="sm:col-span-full overflow-auto scroll-smooth">
+            <h2 className="form-label mb-3">Select Detail Tags</h2>
+            <div className="flex gap-6">
+              {detailTags?.map((tag: { name: string; value: string }) => (
+                <div key={tag.value} className="flex items-center mb-2">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 mr-3 rounded border-gray-300 text-stayPurple focus:ring-stayPurple"
+                    value={tag.value}
+                    {...register("detailTags")}
+                    onChange={(e) => {
+                      const { checked } = e.target;
+                      const tagValue = tag.value;
+                      const currentTagValues = getValues("detailTags") || [];
+
+                      if (checked) {
+                        setValue("detailTags", [...currentTagValues, tagValue]);
+                      } else {
+                        setValue(
+                          "detailTags",
+                          currentTagValues.filter((c: string) => c !== tagValue)
+                        );
+                      }
+                    }}
+                  />
+                  <label htmlFor={tag.name} className="capitalize text-sm">
+                    {tag.name}
+                  </label>
+                </div>
+              ))}
+            </div>
+            {errors.detailTags && (
+              <p className="text-red-500 text-xs ">
+                {errors.detailTags.message}
+              </p>
+            )}
+          </div>
+
+          {/* Images */}
           <div className="sm:col-span-4">
             <label
               htmlFor="email"
@@ -409,6 +474,7 @@ export default function ProductForm({ productToEdit }: any) {
             )}
           </div>
 
+          {/* Discounted Price */}
           <div className="sm:col-span-2 sm:col-start-1">
             <NumberInputField
               name="discountedPrice"
@@ -421,6 +487,7 @@ export default function ProductForm({ productToEdit }: any) {
             />
           </div>
 
+          {/* Actual Price */}
           <div className="sm:col-span-2">
             <NumberInputField
               name="price"
@@ -433,6 +500,7 @@ export default function ProductForm({ productToEdit }: any) {
             />
           </div>
 
+          {/* Stock available */}
           <div className="sm:col-span-2">
             <NumberInputField
               name="stockAvailable"
@@ -444,6 +512,8 @@ export default function ProductForm({ productToEdit }: any) {
               error={errors.stockAvailable}
             />
           </div>
+
+          {/* Description */}
           <div className="sm:col-span-4">
             <label
               htmlFor="description"
@@ -468,6 +538,7 @@ export default function ProductForm({ productToEdit }: any) {
         </div>
       </div>
 
+      {/*Action Buttons  */}
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <Link
           href="/admin/products"

@@ -1,12 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import Wrapper from "@/layouts/Wrapper";
 import React, { useContext, useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel";
 import RelatedProducts from "@/components/RelatedProducts";
 import { StoreContext } from "@/store/store";
 import { calculateDiscountPercentage } from "@/utils/utils";
 import { toast } from "react-hot-toast";
+import { BiLeaf } from "react-icons/bi";
+import { Tooltip } from "@nextui-org/react";
+import { MdCrueltyFree } from "react-icons/md";
+
+export enum DETAIL_TAGS{
+  CRUELTY_FREE = "cruelty-free",
+  PH_RANGE = "ph-range",
+  PLUS_THREE ="plus-three",
+  VEGAN_FRIENDLY = "vegan-friendly"
+}
 
 function ProductDetailsCarousel({
   productImages,
@@ -126,13 +136,63 @@ const ProductDetails = ({ product }: any) => {
             {/*Add to Cart*/}
             <button
               onClick={AddToCartHandler}
-              className=" mb-8 mt-10 w-full rounded-full bg-black py-4 text-lg font-medium text-white transition-transform hover:opacity-75 active:scale-95"
+              className=" mb-8 mt-6 w-full rounded-full bg-black py-4 text-lg font-medium text-white transition-transform hover:opacity-75 active:scale-95"
             >
               Add to Cart
             </button>
-            <div>
+            <div className="border-t border-black pt-4">
               <h1 className="mb-4 text-[24px] font-bold">Product Details</h1>
-              <p className=" text-md mb-5">{product?.description}</p>
+              {/* Product Description Tags */}
+              <div className="mb-4 flex items-center gap-x-4">
+                {product?.detailTags?.includes(DETAIL_TAGS.CRUELTY_FREE) && (
+                  <Tooltip content={"Cruelty free"}>
+                    <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                      <MdCrueltyFree
+                        size={26}
+                        className="text-gray-700 group-hover:opacity-75"
+                      />
+                    </div>
+                  </Tooltip>
+                )}
+                {product?.detailTags?.includes(DETAIL_TAGS.PH_RANGE) && (
+                  <Tooltip content={"Ph range: 6.80 ± 1.0"}>
+                    <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                      <p className="text-lg">
+                        p<span>H</span>{" "}
+                      </p>
+                    </div>
+                  </Tooltip>
+                )}
+
+                {product?.detailTags?.includes(DETAIL_TAGS.VEGAN_FRIENDLY) && (
+                  <Tooltip content={"Vegan Friendly"}>
+                    <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                      <BiLeaf
+                        size={26}
+                        className="text-gray-700 group-hover:opacity-75"
+                      />
+                    </div>
+                  </Tooltip>
+                )}
+                {product?.detailTags?.includes(DETAIL_TAGS.PLUS_THREE) && (
+                  <Tooltip
+                    content={`
+                + Artificial coloring-free
+                + Artificial fragrance-free
+                + Essential oil free
+                `}
+                  >
+                    <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                      <p className="text-lg">
+                        +<span>3</span>{" "}
+                      </p>
+                    </div>
+                  </Tooltip>
+                )}
+              </div>
+              <div>
+                <p className=" text-md my-2">{product?.description}</p>
+              </div>
             </div>
           </div>
         </div>
