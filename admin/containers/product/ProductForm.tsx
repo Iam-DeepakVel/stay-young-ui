@@ -21,7 +21,10 @@ const productFormSchema = z
     category: z
       .array(z.string())
       .min(1, "At least one category must be selected"),
-    detailTags: z.array(z.string()),
+    crueltyContent: z.string(),
+    phContent: z.string(),
+    plusThreeContent: z.string(),
+    veganContent: z.string(),
     image1: z.string().min(1, "Image 1 url is required").url(),
     image2: z.string(),
     image3: z.string(),
@@ -100,7 +103,16 @@ export default function ProductForm({ productToEdit }: any) {
       name: productToEdit?.name || "",
       subName: productToEdit?.subName || "",
       category: productToEdit?.category || [],
-      detailTags: productToEdit?.detailTags || [],
+      crueltyContent: productToEdit
+        ? productToEdit.detailTags[0]?.content
+        : "Cruelty Free",
+      phContent: productToEdit ? productToEdit.detailTags[1]?.content : "",
+      plusThreeContent: productToEdit
+        ? productToEdit.detailTags[2]?.content
+        : "Artificial coloring-free + Artificial fragrance-free + Essential oil free",
+      veganContent: productToEdit
+        ? productToEdit.detailTags[3]?.content
+        : "Vegan Friendly",
       image1: productToEdit?.images[0] || "",
       image2: productToEdit?.images[1] || "",
       image3: productToEdit?.images[2] || "",
@@ -126,7 +138,18 @@ export default function ProductForm({ productToEdit }: any) {
   }, []);
 
   const onSubmit: SubmitHandler<ProductFormSchemaType> = async (data) => {
-    const { image1, image2, image3, image4, image5, ...rest } = data;
+    const {
+      image1,
+      image2,
+      image3,
+      image4,
+      image5,
+      crueltyContent,
+      phContent,
+      plusThreeContent,
+      veganContent,
+      ...rest
+    } = data;
 
     const images = [image1];
 
@@ -145,8 +168,29 @@ export default function ProductForm({ productToEdit }: any) {
     if (image5) {
       images.push(image5);
     }
+
+    const detailTags = [
+      {
+        name: "cruelty-free",
+        content: crueltyContent,
+      },
+      {
+        name: "ph-range",
+        content: phContent,
+      },
+      {
+        name: "plus-three",
+        content: plusThreeContent,
+      },
+      {
+        name: "vegan-friendly",
+        content: veganContent,
+      },
+    ];
+
     const modifiedData = {
       ...rest,
+      detailTags,
       images,
     };
 
@@ -297,41 +341,73 @@ export default function ProductForm({ productToEdit }: any) {
 
           {/* Detail Tags */}
           <div className="sm:col-span-full overflow-auto scroll-smooth">
-            <h2 className="form-label mb-3">Select Detail Tags</h2>
-            <div className="flex gap-6">
-              {detailTags?.map((tag: { name: string; value: string }) => (
-                <div key={tag.value} className="flex items-center mb-2">
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 mr-3 rounded border-gray-300 text-stayPurple focus:ring-stayPurple"
-                    value={tag.value}
-                    {...register("detailTags")}
-                    onChange={(e) => {
-                      const { checked } = e.target;
-                      const tagValue = tag.value;
-                      const currentTagValues = getValues("detailTags") || [];
-
-                      if (checked) {
-                        setValue("detailTags", [...currentTagValues, tagValue]);
-                      } else {
-                        setValue(
-                          "detailTags",
-                          currentTagValues.filter((c: string) => c !== tagValue)
-                        );
-                      }
-                    }}
-                  />
-                  <label htmlFor={tag.name} className="capitalize text-sm">
-                    {tag.name}
-                  </label>
-                </div>
-              ))}
+            <h2 className="form-label mb-3">Product Detail Tags</h2>
+            <div className="flex flex-wrap gap-6">
+              <div className="sm:col-span-2">
+                <InputField
+                  name="crueltyContent"
+                  type="text"
+                  label="Cruelty Free"
+                  register={register}
+                  placeholder="Enter the content"
+                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  error={errors.name}
+                />
+                {errors.crueltyContent && (
+                  <p className="text-red-500 text-xs ">
+                    {errors.crueltyContent.message}
+                  </p>
+                )}
+              </div>
+              <div className="sm:col-span-2">
+                <InputField
+                  name="phContent"
+                  type="text"
+                  label="Ph Range"
+                  register={register}
+                  placeholder="Enter the content"
+                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  error={errors.name}
+                />
+                {errors.phContent && (
+                  <p className="text-red-500 text-xs ">
+                    {errors.phContent.message}
+                  </p>
+                )}
+              </div>
+              <div className="sm:col-span-2">
+                <InputField
+                  name="plusThreeContent"
+                  type="text"
+                  label="Plus Three"
+                  register={register}
+                  placeholder="Enter the content"
+                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  error={errors.name}
+                />
+                {errors.plusThreeContent && (
+                  <p className="text-red-500 text-xs ">
+                    {errors.plusThreeContent.message}
+                  </p>
+                )}
+              </div>
+              <div className="sm:col-span-2">
+                <InputField
+                  name="veganContent"
+                  type="text"
+                  label="Vegan Friendly"
+                  register={register}
+                  placeholder="Enter the content"
+                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  error={errors.name}
+                />
+                {errors.veganContent && (
+                  <p className="text-red-500 text-xs ">
+                    {errors.veganContent.message}
+                  </p>
+                )}
+              </div>
             </div>
-            {errors.detailTags && (
-              <p className="text-red-500 text-xs ">
-                {errors.detailTags.message}
-              </p>
-            )}
           </div>
 
           {/* Images */}
