@@ -10,13 +10,14 @@ import { StoreContext } from "@/store/store";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CategoryDto } from "@/pages/admin/categories/[id]";
+import { BrandDto } from "@/pages/admin/brands/[id]";
 
 const Header = () => {
   const [show, setShow] = useState("translate-y-0");
-  const [showCategoryMenu, setShowCategoryMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categories, setCategories] = useState<CategoryDto[] | null>(null);
+  const [brands, setBrands] = useState<BrandDto[] | null>(null);
 
   const { state } = useContext(StoreContext);
   const { cart } = state;
@@ -47,15 +48,31 @@ const Header = () => {
   }, [lastScrollY]);
 
   // Fetching Categories
-  useEffect(() => {
-    async function fetchCategories() {
+  async function fetchCategories() {
+    try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
       );
-      const categories = await res.json();
-      setCategories(categories);
+      setCategories(await res.json());
+    } catch (error) {
+      console.log("Error Fetching Categoires", error);
     }
+  }
+
+  async function fetchBrands() {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/brand`
+      );
+      setBrands(await res.json());
+    } catch (error) {
+      console.log("Error Fetching Brands", error);
+    }
+  }
+
+  useEffect(() => {
     fetchCategories();
+    fetchBrands();
   }, []);
 
   return (
@@ -94,17 +111,15 @@ const Header = () => {
 
         {/* Nav Links */}
         <Menu
-          showCategoryMenu={showCategoryMenu}
-          setShowCategoryMenu={setShowCategoryMenu}
           categories={categories}
+          brands={brands}
         />
 
         {mobileMenu && (
           <MenuMobile
-            showCategoryMenu={showCategoryMenu}
-            setShowCategoryMenu={setShowCategoryMenu}
             setMobileMenu={setMobileMenu}
             categories={categories}
+            brands={brands}
           />
         )}
 
