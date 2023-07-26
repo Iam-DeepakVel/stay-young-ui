@@ -7,6 +7,7 @@ import {
   TagIcon,
   XMarkIcon,
   ShoppingBagIcon,
+  Squares2X2Icon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useAuth } from "../hooks/useAuth";
@@ -25,6 +26,7 @@ const navigation = [
     href: "/admin/categories",
     icon: ListBulletIcon,
   },
+  { name: "Brands", href: "/admin/brands", icon: Squares2X2Icon },
   { name: "Coupons", href: "/admin/coupons", icon: TagIcon },
 ];
 
