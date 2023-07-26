@@ -7,15 +7,13 @@ import RelatedProducts from "@/components/RelatedProducts";
 import { StoreContext } from "@/store/store";
 import { calculateDiscountPercentage } from "@/utils/utils";
 import { toast } from "react-hot-toast";
-import { BiLeaf } from "react-icons/bi";
 import { Tooltip } from "@nextui-org/react";
 import { MdCrueltyFree } from "react-icons/md";
 
 export enum DETAIL_TAGS {
   CRUELTY_FREE = "cruelty-free",
   PH_RANGE = "ph-range",
-  PLUS_THREE = "plus-three",
-  VEGAN_FRIENDLY = "vegan-friendly",
+  ADDITIONAL_INFO = "additional-info",
 }
 
 function ProductDetailsCarousel({
@@ -81,6 +79,8 @@ const ProductDetails = ({ product }: any) => {
     fetchProducts();
   }, [product]);
 
+  console.log(product);
+
   return (
     <div className=" w-full md:py-20">
       <Wrapper>
@@ -98,7 +98,12 @@ const ProductDetails = ({ product }: any) => {
             {/* Product Title */}
             <h2 className=" mb-2 text-[34px] font-semibold">{product?.name}</h2>
             {/* Product Subtitle */}
-            <div className="mb-5 text-lg font-semibold">{product?.subName}</div>
+            <div className="mb-2 text-lg font-semibold">{product?.subName}</div>
+            {/* Product Brand */}
+            <div className="mb-3 text-lg font-semibold flex items-center gap-2">
+              <h4>Brand:</h4>
+              <p className="capitalize">{product?.brand?.name}</p>
+            </div>
             {/* Product Price */}
             <div className=" text-lg font-semibold">
               <div className=" flex items-center">
@@ -161,13 +166,7 @@ const ProductDetails = ({ product }: any) => {
                               p<span>H</span>{" "}
                             </p>
                           )}
-                          {tag.name === DETAIL_TAGS.VEGAN_FRIENDLY && (
-                            <BiLeaf
-                              size={26}
-                              className="text-gray-700 group-hover:opacity-75"
-                            />
-                          )}
-                          {tag.name === DETAIL_TAGS.PLUS_THREE && (
+                          {tag.name === DETAIL_TAGS.ADDITIONAL_INFO && (
                             <p className="text-lg">
                               +<span>3</span>{" "}
                             </p>

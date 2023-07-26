@@ -12,6 +12,9 @@ import { toast } from "react-hot-toast";
 import { animateScroll as scroll } from "react-scroll";
 import { HiOutlineEye } from "react-icons/hi";
 import Image from "next/image";
+import { MdCrueltyFree } from "react-icons/md";
+import { CategoryDto } from "@/pages/admin/categories/[id]";
+import { BrandDto } from "@/pages/admin/brands/[id]";
 import { DETAIL_TAGS } from "@/containers/product-details/ProductDetails";
 
 const productFormSchema = z
@@ -21,10 +24,10 @@ const productFormSchema = z
     category: z
       .array(z.string())
       .min(1, "At least one category must be selected"),
+    brand: z.string().min(1, "Brand is required"),
     crueltyContent: z.string(),
     phContent: z.string(),
-    plusThreeContent: z.string(),
-    veganContent: z.string(),
+    additionalInfoContent: z.string(),
     image1: z.string().min(1, "Image 1 url is required").url(),
     image2: z.string(),
     image3: z.string(),
@@ -50,27 +53,9 @@ const productFormSchema = z
 
 type ProductFormSchemaType = z.infer<typeof productFormSchema>;
 
-const detailTags = [
-  {
-    name: "Cruelty Free",
-    value: DETAIL_TAGS.CRUELTY_FREE,
-  },
-  {
-    name: "PH Range",
-    value: DETAIL_TAGS.PH_RANGE,
-  },
-  {
-    name: "Plus Three",
-    value: DETAIL_TAGS.PLUS_THREE,
-  },
-  {
-    name: "Vegan Friendly",
-    value: DETAIL_TAGS.VEGAN_FRIENDLY,
-  },
-];
-
 export default function ProductForm({ productToEdit }: any) {
-  const [categories, setCategories] = useState<any>();
+  const [categories, setCategories] = useState<CategoryDto[]>();
+  const [brands, setBrands] = useState<BrandDto[]>();
   const [image1Url, setImage1Url] = useState(productToEdit?.images[0]);
   const [image2Url, setImage2Url] = useState(productToEdit?.images[1]);
   const [image3Url, setImage3Url] = useState(productToEdit?.images[2]);
@@ -103,16 +88,14 @@ export default function ProductForm({ productToEdit }: any) {
       name: productToEdit?.name || "",
       subName: productToEdit?.subName || "",
       category: productToEdit?.category || [],
+      brand: productToEdit?.brand?._id || "",
       crueltyContent: productToEdit
         ? productToEdit.detailTags[0]?.content
         : "Cruelty Free",
       phContent: productToEdit ? productToEdit.detailTags[1]?.content : "",
-      plusThreeContent: productToEdit
+      additionalInfoContent: productToEdit
         ? productToEdit.detailTags[2]?.content
         : "Artificial coloring-free + Artificial fragrance-free + Essential oil free",
-      veganContent: productToEdit
-        ? productToEdit.detailTags[3]?.content
-        : "Vegan Friendly",
       image1: productToEdit?.images[0] || "",
       image2: productToEdit?.images[1] || "",
       image3: productToEdit?.images[2] || "",
@@ -125,16 +108,31 @@ export default function ProductForm({ productToEdit }: any) {
     },
   });
 
-  // Fetching Categories
-  useEffect(() => {
-    async function fetchCategories() {
+  async function fetchCategories() {
+    try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
       );
       const categories = await res.json();
       setCategories(categories);
+    } catch (error) {
+      console.log("Error Fetching Categories", error);
     }
+  }
+  async function fetchBrands() {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/brand`
+      );
+      setBrands(await res.json());
+    } catch (error) {
+      console.log("Error Fetching Brands", error);
+    }
+  }
+
+  useEffect(() => {
     fetchCategories();
+    fetchBrands();
   }, []);
 
   const onSubmit: SubmitHandler<ProductFormSchemaType> = async (data) => {
@@ -146,8 +144,7 @@ export default function ProductForm({ productToEdit }: any) {
       image5,
       crueltyContent,
       phContent,
-      plusThreeContent,
-      veganContent,
+      additionalInfoContent,
       ...rest
     } = data;
 
@@ -171,20 +168,16 @@ export default function ProductForm({ productToEdit }: any) {
 
     const detailTags = [
       {
-        name: "cruelty-free",
+        name: DETAIL_TAGS.CRUELTY_FREE,
         content: crueltyContent,
       },
       {
-        name: "ph-range",
+        name: DETAIL_TAGS.PH_RANGE,
         content: phContent,
       },
       {
-        name: "plus-three",
-        content: plusThreeContent,
-      },
-      {
-        name: "vegan-friendly",
-        content: veganContent,
+        name: DETAIL_TAGS.ADDITIONAL_INFO,
+        content: additionalInfoContent,
       },
     ];
 
@@ -298,7 +291,7 @@ export default function ProductForm({ productToEdit }: any) {
           </div>
 
           {/* Category */}
-          <div className="sm:col-span-full overflow-auto scroll-smooth">
+          <div className="sm:col-span-full">
             <h2 className="form-label mb-3">Select Category</h2>
             <div className="flex gap-6">
               {categories?.map((category: any) => (
@@ -339,31 +332,53 @@ export default function ProductForm({ productToEdit }: any) {
             )}
           </div>
 
+          {/* Brands */}
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="brand"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Choose Brand
+            </label>
+            <select
+              {...register("brand")}
+              defaultValue={productToEdit?.brand?._id}
+              className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-stayPurple sm:text-sm sm:leading-6"
+            >
+              <option value="" disabled>
+                Choose Brand
+              </option>
+              {brands?.map((brand) => (
+                <option
+                  key={brand._id}
+                  value={brand._id}
+                  selected={productToEdit?.brand?._id === brand._id}
+                >
+                  {brand.name}
+                </option>
+              ))}
+            </select>
+            {errors.brand && (
+              <span className="form-error-text mt-1">
+                {errors.brand.message}
+              </span>
+            )}
+          </div>
+
           {/* Detail Tags */}
           <div className="sm:col-span-full overflow-auto scroll-smooth">
             <h2 className="form-label mb-3">Product Detail Tags</h2>
+            {/* Tags Container */}
             <div className="flex flex-wrap gap-6">
-              <div className="sm:col-span-2">
-                <InputField
-                  name="crueltyContent"
-                  type="text"
-                  label="Cruelty Free"
-                  register={register}
-                  placeholder="Enter the content"
-                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
-                  error={errors.name}
-                />
-                {errors.crueltyContent && (
-                  <p className="text-red-500 text-xs ">
-                    {errors.crueltyContent.message}
+              <div className="flex items-center gap-4 sm:col-span-2">
+                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                  <p className="text-lg">
+                    p<span>H</span>{" "}
                   </p>
-                )}
-              </div>
-              <div className="sm:col-span-2">
+                </div>
                 <InputField
                   name="phContent"
                   type="text"
-                  label="Ph Range"
                   register={register}
                   placeholder="Enter the content"
                   className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
@@ -375,35 +390,46 @@ export default function ProductForm({ productToEdit }: any) {
                   </p>
                 )}
               </div>
-              <div className="sm:col-span-2">
+              <div className="flex items-center gap-3 sm:col-span-2">
+                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                  <MdCrueltyFree
+                    size={26}
+                    className="text-gray-700 group-hover:opacity-75"
+                  />
+                </div>
                 <InputField
-                  name="plusThreeContent"
+                  name="crueltyContent"
                   type="text"
-                  label="Plus Three"
                   register={register}
                   placeholder="Enter the content"
                   className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                   error={errors.name}
                 />
-                {errors.plusThreeContent && (
+                {errors.crueltyContent && (
                   <p className="text-red-500 text-xs ">
-                    {errors.plusThreeContent.message}
+                    {errors.crueltyContent.message}
                   </p>
                 )}
               </div>
-              <div className="sm:col-span-2">
+
+              <div className="flex items-center gap-4 sm:col-span-2">
+                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+                  <p className="text-lg">
+                    +<span>3</span>{" "}
+                  </p>
+                </div>
+
                 <InputField
-                  name="veganContent"
+                  name="additionalInfoContent"
                   type="text"
-                  label="Vegan Friendly"
                   register={register}
                   placeholder="Enter the content"
                   className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
                   error={errors.name}
                 />
-                {errors.veganContent && (
+                {errors.additionalInfoContent && (
                   <p className="text-red-500 text-xs ">
-                    {errors.veganContent.message}
+                    {errors.additionalInfoContent.message}
                   </p>
                 )}
               </div>
