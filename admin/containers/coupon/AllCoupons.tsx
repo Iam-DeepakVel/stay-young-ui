@@ -156,9 +156,9 @@ const AllCoupons = () => {
                         {coupon.discount}
                       </td>
                       <td className="whitespace-nowrap capitalize py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
-                        {`${new Date(coupon.expiry).getDate()}-${new Date(
-                          coupon.expiry
-                        ).getMonth()}-${new Date(coupon.expiry).getFullYear()}`}
+                        {`${new Date(coupon.expiry).getDate()}-${
+                          new Date(coupon.expiry).getMonth() + 1
+                        }-${new Date(coupon.expiry).getFullYear()}`}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         <Image
