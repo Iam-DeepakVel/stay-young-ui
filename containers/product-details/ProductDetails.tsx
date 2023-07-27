@@ -79,8 +79,6 @@ const ProductDetails = ({ product }: any) => {
     fetchProducts();
   }, [product]);
 
-  console.log(product);
-
   return (
     <div className=" w-full md:py-20">
       <Wrapper>
@@ -150,8 +148,12 @@ const ProductDetails = ({ product }: any) => {
               {/* Product Description Tags */}
               <div className="mb-4 flex items-center gap-x-4">
                 {product?.detailTags?.map(
-                  (tag: { name: string; content: string }) => {
-                    if (tag.content === "") return null;
+                  (tag: {
+                    isActive: boolean;
+                    name: string;
+                    content: string;
+                  }) => {
+                    if (!tag.isActive) return null;
                     return (
                       <Tooltip key={tag.name} content={tag.content}>
                         <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
@@ -167,9 +169,7 @@ const ProductDetails = ({ product }: any) => {
                             </p>
                           )}
                           {tag.name === DETAIL_TAGS.ADDITIONAL_INFO && (
-                            <p className="text-lg">
-                              +<span>3</span>{" "}
-                            </p>
+                            <p className="text-lg">+</p>
                           )}
                         </div>
                       </Tooltip>

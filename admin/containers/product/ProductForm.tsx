@@ -62,6 +62,16 @@ export default function ProductForm({ productToEdit }: any) {
   const [image4Url, setImage4Url] = useState(productToEdit?.images[3]);
   const [image5Url, setImage5Url] = useState(productToEdit?.images[4]);
 
+  const [crueltyActive, setCrueltyActive] = useState(
+    productToEdit ? productToEdit.detailTags[0]?.isActive : false
+  );
+  const [phActive, setPhActive] = useState(
+    productToEdit ? productToEdit.detailTags[1]?.isActive : false
+  );
+  const [additionalInfoActive, setAdditionalInfoActive] = useState(
+    productToEdit ? productToEdit.detailTags[2]?.isActive : false
+  );
+
   const router = useRouter();
 
   const handleImage1UrlChange = (event: ChangeEvent<HTMLInputElement>) =>
@@ -168,14 +178,17 @@ export default function ProductForm({ productToEdit }: any) {
 
     const detailTags = [
       {
+        isActive: crueltyActive,
         name: DETAIL_TAGS.CRUELTY_FREE,
         content: crueltyContent,
       },
       {
+        isActive: phActive,
         name: DETAIL_TAGS.PH_RANGE,
         content: phContent,
       },
       {
+        isActive: additionalInfoActive,
         name: DETAIL_TAGS.ADDITIONAL_INFO,
         content: additionalInfoContent,
       },
@@ -353,6 +366,7 @@ export default function ProductForm({ productToEdit }: any) {
                   key={brand._id}
                   value={brand._id}
                   selected={productToEdit?.brand?._id === brand._id}
+                  className="capitalize"
                 >
                   {brand.name}
                 </option>
@@ -366,67 +380,106 @@ export default function ProductForm({ productToEdit }: any) {
           </div>
 
           {/* Detail Tags */}
-          <div className="sm:col-span-full overflow-auto scroll-smooth">
+          <div className="sm:col-span-full">
             <h2 className="form-label mb-3">Product Detail Tags</h2>
             {/* Tags Container */}
             <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-4 sm:col-span-2">
-                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+              {/* Ph */}
+              <div className="flex items-center gap-2 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={phActive}
+                  onChange={(e) => setPhActive(e.target.checked)}
+                />
+                <div
+                  className={`group flex h-12 w-12 items-center justify-center rounded-full border ${
+                    phActive ? "opacity-75" : "opacity-100"
+                  }`}
+                >
                   <p className="text-lg">
                     p<span>H</span>{" "}
                   </p>
                 </div>
-                <InputField
-                  name="phContent"
-                  type="text"
-                  register={register}
-                  placeholder="Enter the content"
-                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
-                  error={errors.name}
-                />
+                {phActive && (
+                  <InputField
+                    name="phContent"
+                    type="text"
+                    register={register}
+                    placeholder="Enter the content"
+                    className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                    error={errors.phContent}
+                  />
+                )}
                 {errors.phContent && (
                   <p className="text-red-500 text-xs ">
                     {errors.phContent.message}
                   </p>
                 )}
               </div>
-              <div className="flex items-center gap-3 sm:col-span-2">
-                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
+              {/* Cruelty Free */}
+              <div className="flex items-center gap-2 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={crueltyActive}
+                  onChange={(e) => setCrueltyActive(e.target.checked)}
+                />
+                <div
+                  className={`group flex h-12 w-12 items-center justify-center rounded-full border ${
+                    crueltyActive ? "opacity-75" : "opacity-100"
+                  }`}
+                >
                   <MdCrueltyFree
                     size={26}
-                    className="text-gray-700 group-hover:opacity-75"
+                    className={`text-gray-700 ${
+                      crueltyActive ? "group-hover:opacity-75" : ""
+                    }`}
                   />
                 </div>
-                <InputField
-                  name="crueltyContent"
-                  type="text"
-                  register={register}
-                  placeholder="Enter the content"
-                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
-                  error={errors.name}
-                />
+                {crueltyActive && (
+                  <InputField
+                    name="crueltyContent"
+                    type="text"
+                    register={register}
+                    placeholder="Enter the content"
+                    className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                    error={errors.crueltyContent}
+                  />
+                )}
                 {errors.crueltyContent && (
                   <p className="text-red-500 text-xs ">
                     {errors.crueltyContent.message}
                   </p>
                 )}
               </div>
-
-              <div className="flex items-center gap-4 sm:col-span-2">
-                <div className="group flex h-12 w-12 items-center justify-center rounded-full border border-gray-700 hover:opacity-75">
-                  <p className="text-lg">
-                    +<span>3</span>{" "}
-                  </p>
+              {/* Additional Info */}
+              <div className="flex items-center gap-2 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={additionalInfoActive}
+                  onChange={(e) => setAdditionalInfoActive(e.target.checked)}
+                />
+                <div
+                  className={`group flex h-12 w-12 items-center justify-center rounded-full border ${
+                    additionalInfoActive ? "opacity-75" : "opacity-100"
+                  }`}
+                >
+                  <p className="text-lg">+</p>
                 </div>
 
-                <InputField
-                  name="additionalInfoContent"
-                  type="text"
-                  register={register}
-                  placeholder="Enter the content"
-                  className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
-                  error={errors.name}
-                />
+                {additionalInfoActive && (
+                  <InputField
+                    name="additionalInfoContent"
+                    type="text"
+                    register={register}
+                    placeholder="Enter the content"
+                    className="block w-full mt-3 rounded-md border-0 placeholder:text-sm py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                    error={errors.additionalInfoContent}
+                  />
+                )}
+
                 {errors.additionalInfoContent && (
                   <p className="text-red-500 text-xs ">
                     {errors.additionalInfoContent.message}
