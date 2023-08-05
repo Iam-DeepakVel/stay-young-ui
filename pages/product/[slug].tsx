@@ -14,17 +14,21 @@ const ProductDetailsPage = () => {
     async function fetchSingleProduct() {
       if (slug) {
         setLoading(true);
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/slug/${slug}`
-        );
-        if (res.ok) {
-          const product = await res.json();
-          // Check if the data is valid JSON
-          if (product) {
-            setProduct(product);
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/product/slug/${slug}`
+          );
+          if (res.ok) {
+            const product = await res.json();
+            // Check if the data is valid JSON
+            if (product) {
+              setProduct(product);
+            }
           }
+          setLoading(false);
+        } catch (error) {
+          console.log("Error Fetching product: ", error);
         }
-        setLoading(false);
       }
     }
     fetchSingleProduct();

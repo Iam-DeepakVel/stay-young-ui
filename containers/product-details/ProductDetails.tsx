@@ -144,8 +144,10 @@ const ProductDetails = ({ product }: any) => {
               Add to Cart
             </button>
             <div className="border-t border-black pt-4">
-              <h1 className="mb-4 text-[24px] font-bold">Product Details</h1>
-              {/* Product Description Tags */}
+              <h1 className="mb-4 text-[24px] font-bold">
+                Product Description
+              </h1>
+              {/* Product Tags */}
               <div className="mb-4 flex items-center gap-x-4">
                 {product?.detailTags?.map(
                   (tag: {
@@ -177,8 +179,21 @@ const ProductDetails = ({ product }: any) => {
                   }
                 )}
               </div>
+
+              {/* Description  */}
+              {/* i) Content */}
+              <p className=" text-md my-2">{product?.description.content}</p>
+
+              {/* ii) Ingredients */}
+              <div className="my-4">
+                <h1 className="text-xl mb-1">Ingredients</h1>
+                <p className="text-md">{product?.description.ingredients}</p>
+              </div>
+
+              {/* iii) Usage */}
               <div>
-                <p className=" text-md my-2">{product?.description}</p>
+                <h1 className="text-xl mb-1">How to use?</h1>
+                <p className="text-md">{product?.description.usage}</p>
               </div>
             </div>
           </div>

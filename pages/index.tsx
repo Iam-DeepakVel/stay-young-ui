@@ -20,16 +20,21 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`
-      );
-      const resBestSellers = await fetch(
-        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/best-sellers`
-      );
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/banner`
+        );
+        const resBestSellers = await fetch(
+          `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/best-sellers`
+        );
 
-      setBanners(await res.json());
-      setBestSellers(await resBestSellers.json());
-      setLoading(false);
+        setBanners(await res.json());
+        setBestSellers(await resBestSellers.json());
+      } catch (error) {
+        console.log("Failed fetching Banners & BestSellers: ", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchData();
   }, []);

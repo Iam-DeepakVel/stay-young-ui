@@ -44,7 +44,9 @@ const productFormSchema = z
     stockAvailable: z
       .number()
       .min(0, "Stock available must be a positive number or zero"),
-    description: z.string().min(1, "Description is required"),
+    content: z.string().min(1, "Content is required"),
+    ingredients: z.string().min(1, "Ingredients is required"),
+    usage: z.string().min(1, "Usage is required"),
   })
   .refine((data) => data.price >= data.discountedPrice, {
     path: ["price"],
@@ -114,7 +116,9 @@ export default function ProductForm({ productToEdit }: any) {
       price: productToEdit?.price || "",
       discountedPrice: productToEdit?.discountedPrice || "",
       stockAvailable: productToEdit?.stockAvailable || "",
-      description: productToEdit?.description || "",
+      content: productToEdit?.description.content || "",
+      ingredients: productToEdit?.description.ingredients || "",
+      usage: productToEdit?.description.usage || "",
     },
   });
 
@@ -155,6 +159,9 @@ export default function ProductForm({ productToEdit }: any) {
       crueltyContent,
       phContent,
       additionalInfoContent,
+      content,
+      ingredients,
+      usage,
       ...rest
     } = data;
 
@@ -196,6 +203,11 @@ export default function ProductForm({ productToEdit }: any) {
 
     const modifiedData = {
       ...rest,
+      description: {
+        content,
+        ingredients,
+        usage,
+      },
       detailTags,
       images,
     };
@@ -669,26 +681,72 @@ export default function ProductForm({ productToEdit }: any) {
           </div>
 
           {/* Description */}
-          <div className="sm:col-span-4">
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Description
-            </label>
-            <div className="mt-2">
-              <textarea
-                rows={7}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
-                defaultValue={""}
-                {...register("description")}
-              />
+          <div className="sm:col-span-4 space-y-4">
+            <h2>Description</h2>
+            {/* Content */}
+            <div>
+              <label
+                htmlFor="content"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Content
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                  {...register("content")}
+                />
+              </div>
+              {errors.content && (
+                <p className="text-red-500 text-xs ">
+                  {errors.content.message}
+                </p>
+              )}
             </div>
-            {errors.description && (
-              <p className="text-red-500 text-xs ">
-                {errors.description.message}
-              </p>
-            )}
+            {/* Ingredients */}
+            <div>
+              <label
+                htmlFor="ingredients"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Ingredients
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                  {...register("ingredients")}
+                />
+              </div>
+              {errors.ingredients && (
+                <p className="text-red-500 text-xs ">
+                  {errors.ingredients.message}
+                </p>
+              )}
+            </div>
+            {/* Usage */}
+            <div>
+              <label
+                htmlFor="usage"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Usage
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                  {...register("usage")}
+                />
+              </div>
+              {errors.usage && (
+                <p className="text-red-500 text-xs ">{errors.usage.message}</p>
+              )}
+            </div>
           </div>
         </div>
       </div>

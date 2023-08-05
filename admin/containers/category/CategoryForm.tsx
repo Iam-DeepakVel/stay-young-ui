@@ -62,7 +62,9 @@ const CategoryForm = ({ categoryToEdit }: any) => {
           router.push("/admin/categories");
         } else {
           const errorData = await response.json();
-          toast.error(errorData.message);
+          toast.error(errorData.message, {
+            id: editCategoryToast,
+          });
         }
       } else {
         const addCategoryToast = toast.loading("Launching Category...");

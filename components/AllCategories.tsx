@@ -24,11 +24,15 @@ const AllCategories = () => {
   // Fetching Categories
   useEffect(() => {
     async function fetchCategories() {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
-      );
-      const categories = await res.json();
-      setCategories(categories);
+      try {        
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STAY_YOUNG_API}/category`
+        );
+        const categories = await res.json();
+        setCategories(categories);
+      } catch (error) {
+        console.log("Failed to fetch categories: ",error)
+      }
     }
     fetchCategories();
   }, []);
