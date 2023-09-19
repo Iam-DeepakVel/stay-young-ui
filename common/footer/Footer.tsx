@@ -39,7 +39,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-4 pt-8 lg:px-0 lg:pt-4">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-2">
-            <div className="flex -ml-2">
+            <div className="flex -ml-3">
               <Image
                 width={500}
                 height={500}
@@ -74,7 +74,7 @@ export default function Footer() {
                     target="_blank"
                     className=""
                   >
-                    <AiOutlinePhone size={20} />
+                    <AiOutlinePhone size={20} color="Purple" />
                   </a>
                 </motion.li>
 
@@ -85,7 +85,7 @@ export default function Footer() {
                     target="_blank"
                     className=""
                   >
-                    <BiMailSend size={20} />
+                    <BiMailSend size={20} color="Purple" />
                   </a>
                 </motion.li>
 
@@ -96,13 +96,13 @@ export default function Footer() {
                     target="_blank"
                     className=""
                   >
-                    <FaWhatsapp size={20} />
+                    <FaWhatsapp size={20} color="Purple" />
                   </a>
                 </motion.li>
 
                 <motion.li whileHover={{ y: -4 }}>
                   <a href="/" rel="noreferrer" target="_blank" className="">
-                    <AiOutlineInstagram size={20} />
+                    <AiOutlineInstagram size={20} color="Purple" />
                   </a>
                 </motion.li>
               </ul>
@@ -148,7 +148,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="grid-cols- md:grid md:grid-cols-2 md:gap-8">
+            <div className="grid-cols-1 md:grid md:grid-cols-2 md:gap-8">
               <div className="md:mt-0">
                 <h3 className="text-sm font-semibold mb-2 md:mb-6 leading-6 text-gray-900">
                   Contact
