@@ -47,6 +47,8 @@ const productFormSchema = z
     content: z.string().min(1, "Content is required"),
     ingredients: z.string().min(1, "Ingredients is required"),
     usage: z.string().min(1, "Usage is required"),
+    information: z.string().min(1, "Information is required"),
+    benefits: z.string().min(1, "Benefits is required"),
   })
   .refine((data) => data.price >= data.discountedPrice, {
     path: ["price"],
@@ -118,7 +120,10 @@ export default function ProductForm({ productToEdit }: any) {
       stockAvailable: productToEdit?.stockAvailable || "",
       content: productToEdit?.description.content || "",
       ingredients: productToEdit?.description.ingredients || "",
-      usage: productToEdit?.description.usage || "",
+      usage: productToEdit?.description.usage.replace(/\\n/g, "\n") || "",
+      information:
+        productToEdit?.description.information.replace(/\\n/g, "\n") || "",
+      benefits: productToEdit?.description.benefits.replace(/\\n/g, "\n") || "",
     },
   });
 
@@ -162,8 +167,16 @@ export default function ProductForm({ productToEdit }: any) {
       content,
       ingredients,
       usage,
+      information,
+      benefits,
       ...rest
     } = data;
+
+    // Replace newlines in each field with \n
+    const formattedData = {
+      usage: usage.replace(/\n/g, "\\n"),
+      benefits: benefits.replace(/\n/g, "\\n"),
+    };
 
     const images = [image1];
 
@@ -206,7 +219,9 @@ export default function ProductForm({ productToEdit }: any) {
       description: {
         content,
         ingredients,
-        usage,
+        information,
+        // Spread formatedData for usage,information & Benefits
+        ...formattedData,
       },
       detailTags,
       images,
@@ -745,6 +760,50 @@ export default function ProductForm({ productToEdit }: any) {
               </div>
               {errors.usage && (
                 <p className="text-red-500 text-xs ">{errors.usage.message}</p>
+              )}
+            </div>
+            {/* Information */}
+            <div>
+              <label
+                htmlFor="information"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Information
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                  {...register("information")}
+                />
+              </div>
+              {errors.information && (
+                <p className="text-red-500 text-xs ">
+                  {errors.information.message}
+                </p>
+              )}
+            </div>
+            {/* Benefits */}
+            <div>
+              <label
+                htmlFor="benefits"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Benefits
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stayPurple sm:text-sm sm:leading-6"
+                  defaultValue={""}
+                  {...register("benefits")}
+                />
+              </div>
+              {errors.benefits && (
+                <p className="text-red-500 text-xs ">
+                  {errors.benefits.message}
+                </p>
               )}
             </div>
           </div>

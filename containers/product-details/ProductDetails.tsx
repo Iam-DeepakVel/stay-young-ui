@@ -9,6 +9,7 @@ import { calculateDiscountPercentage } from "@/utils/utils";
 import { toast } from "react-hot-toast";
 import { Tooltip } from "@nextui-org/react";
 import { MdCrueltyFree } from "react-icons/md";
+import PointsList from "./PointsList";
 
 export enum DETAIL_TAGS {
   CRUELTY_FREE = "cruelty-free",
@@ -78,6 +79,8 @@ const ProductDetails = ({ product }: any) => {
     }
     fetchProducts();
   }, [product]);
+
+  console.log(product?.description.usage);
 
   return (
     <div className=" w-full md:py-20">
@@ -182,18 +185,31 @@ const ProductDetails = ({ product }: any) => {
 
               {/* Description  */}
               {/* i) Content */}
-              <p className=" text-md my-2">{product?.description.content}</p>
+              <p className="text-md my-4">{product?.description.content}</p>
 
-              {/* ii) Ingredients */}
-              <div className="my-4">
-                <h1 className="text-xl mb-1">Ingredients</h1>
-                <p className="text-md">{product?.description.ingredients}</p>
-              </div>
+              {/* Additional Details */}
+              <div className="space-y-4">
+                {/* ii) Ingredients */}
+                <div>
+                  <h1 className="text-xl mb-1">Ingredients</h1>
+                  <p className="text-md">{product?.description.ingredients}</p>
+                </div>
 
-              {/* iii) Usage */}
-              <div>
-                <h1 className="text-xl mb-1">How to use?</h1>
-                <p className="text-md">{product?.description.usage}</p>
+                {/* iii) Usage */}
+                <div>
+                  <h1 className="text-xl mb-1">How to use?</h1>
+                  <PointsList text={product?.description.usage} />
+                </div>
+                {/* iv) Information */}
+                <div>
+                  <h1 className="text-xl mb-1">Information</h1>
+                  <p>{product?.description.information} </p>
+                </div>
+                {/* v) Benefits */}
+                <div>
+                  <h1 className="text-xl mb-1">Benefits</h1>
+                  <PointsList text={product?.description.benefits} />
+                </div>
               </div>
             </div>
           </div>

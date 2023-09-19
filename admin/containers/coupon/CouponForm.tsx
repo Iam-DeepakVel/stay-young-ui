@@ -12,6 +12,7 @@ import InputField from "@/admin/widgets/form-input/input-field";
 import NumberInputField from "@/admin/widgets/form-input/number-input-field";
 import { HiOutlineEye } from "react-icons/hi";
 import Image from "next/image";
+import { convertGoogleDriveUrlToDirect } from "@/utils/utils";
 
 const couponFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -32,7 +33,8 @@ const CouponForm = ({ couponToEdit }: CouponFormProps) => {
   const [imageUrl, setImageUrl] = useState(couponToEdit?.image);
 
   const handleImageUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setImageUrl(event.target.value);
+    const directUrl = convertGoogleDriveUrlToDirect(event.target.value);
+    // ! write code to use directUrl to display image here
   };
 
   const {
@@ -231,11 +233,9 @@ const CouponForm = ({ couponToEdit }: CouponFormProps) => {
                 couponToEdit
                   ? `| Current Expiry(dd-mm-yyyy): ${new Date(
                       couponToEdit.expiry
-                    ).getDate()}-${new Date(
-                      couponToEdit.expiry
-                    ).getMonth()}-${new Date(
-                      couponToEdit.expiry
-                    ).getFullYear()} `
+                    ).getDate()}-${
+                      new Date(couponToEdit.expiry).getMonth() + 1
+                    }-${new Date(couponToEdit.expiry).getFullYear()} `
                   : ""
               }`}
               type="date"

@@ -70,3 +70,12 @@ export const scrollToBottom = () => {
     behavior: "smooth",
   });
 };
+
+export function convertGoogleDriveUrlToDirect(url: string): string | null {
+  const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)\//);
+  if (match) {
+    const fileId = match[1];
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  }
+  return null;
+}
