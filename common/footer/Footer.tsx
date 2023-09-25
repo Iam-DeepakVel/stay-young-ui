@@ -194,7 +194,7 @@ export default function Footer() {
           <p className="text-xs leading-5 text-gray-500 group">
             Made with ❤️ by{" "}
             <a
-              href="https://jaga.live/"
+              href="https://github.com/live-apps-in"
               target="_blank"
               className="group-hover:text-blue-800"
             >
